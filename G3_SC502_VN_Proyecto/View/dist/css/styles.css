@@ -1,0 +1,17 @@
+.TextoCentrado
+{
+    text-align:center;
+}
+
+.text-white-custom {
+    color: black;
+}
+
+aside{
+    background-color: #b0dcd6;
+}
+
+.nav-sidebar .nav-item {
+    margin-bottom: 25px;
+}
+
