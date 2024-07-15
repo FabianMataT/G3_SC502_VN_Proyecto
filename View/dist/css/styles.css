@@ -1,0 +1,54 @@
+.TextoCentrado
+{
+    text-align:center;
+}
+
+.text-white-custom {
+    color: black;
+}
+
+aside{
+    background-color: #b0dcd6;
+    height: auto;
+}
+
+.nav-sidebar .nav-item {
+    margin-bottom: 25px;
+}
+
+
+
+/*--------------------------------------------------------------Login-----------------------------------------------------------------*/
+.content_login{
+    position: relative;
+}
+.contenedor-imagen {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+
+}
+.contenedor-imagen::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height:600px;
+    background-color: #0b0b0c;
+    opacity: 0.5;
+}
+.container-login, .container-registro, .container-activa{
+    position: absolute; 
+    top: 47%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1; 
+    text-align: left; 
+    color: white;
+}
+.imagen {
+    width: 700px;
+    height:600px;
+}
