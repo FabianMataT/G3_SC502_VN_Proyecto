@@ -11,7 +11,8 @@ function head(){
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="dist/css/adminlte.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
-        <link rel="stylesheet" href="../View/dist/CSS/styles.css">
+        <link rel="stylesheet" href="../View/dist/css/styles.css">
+        <script src="../View/dist/js/script.js"></script>
     </head>'
 ;}
 

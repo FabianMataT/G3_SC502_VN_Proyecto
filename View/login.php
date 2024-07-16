@@ -19,7 +19,7 @@ head();
         <div class="content-wrapper">
             <section class="content_login">
                 <div class="contenedor-imagen">
-                    <img class="imagen" src="https://us.123rf.com/450wm/photodeti/photodeti1807/photodeti180700124/104281525-pembroke-welsh-corgi-cachorro-y-gatito-atigrado-se-miran-en-un-c%C3%A9sped-de-verano.jpg?ver=6" alt="alt" />
+                    <img class="imagen" src="https://us.123rf.com/450wm/photodeti/photodeti1807/photodeti180700124/104281525-pembroke-welsh-corgi-cachorro-y-gatito-atigrado-se-miran-en-un-c%C3%A9sped-de-verano.jpg?ver=6" alt="login" width="700px" height="600px"/>
                 </div>
                 <div class="container-login">
                     <form action="" method="post">
@@ -53,11 +53,9 @@ head();
                         <button type="submit" value="Login" name="btnIniciarSesion" class="btn btn-primary">Ingresar</button>
                     </form>
                     <br>
-                    <a style="color:white;" href="#">No tienes una cuenta creada?</a>
+                    <a style="color:white;" href="registro.php">No tienes una cuenta creada?</a>
                     <br>
-                    <a class="regitrarse" herf="#">
-                        <button type="submit" class="btn btn-primary">Registrarse</button>
-                    </a>
+                    <a href="registro.php" class="btn btn-primary">Registrarse</a>
                 </div>
             </section>
         </div>
