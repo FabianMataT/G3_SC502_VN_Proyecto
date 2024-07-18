@@ -61,3 +61,187 @@ aside{
 .hidden {
     display: none;
 }
+
+/*Crear producto*/
+.container_producto {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 200px auto 0 auto;
+}
+
+#publicationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#publicationForm div {
+    display: flex;
+    flex-direction: column;
+}
+
+#publicationForm label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+#publicationForm input[type="text"],
+#publicationForm textarea {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #495057;
+    background-color: #fff;
+}
+
+#publicationForm input[type="file"] {
+    font-size: 16px;
+    color: #495057;
+}
+
+#publicationForm button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#publicationForm button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/*Ver productos*/
+
+.containerVerProductos {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 200px auto 0 auto;
+}
+
+#publicationTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#publicationTable, #publicationTable th, #publicationTable td {
+    border: 1px solid #000000;
+}
+
+#publicationTable th, #publicationTable td {
+    padding: 10px;
+    text-align: left;
+}
+
+#publicationTable th {
+    background-color: #b0dcd6;
+    color: #000000;
+}
+
+#publicationTable .thumbnail {
+    width: 50px;
+    height: 50px;
+}
+
+#publicationTable .btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#publicationTable .btn-edit {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#publicationTable .btn-edit:hover {
+    background-color: #0056b3;
+}
+
+#publicationTable .btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+#publicationTable .btn-delete:hover {
+    background-color: #c82333;
+}
+
+/*Ver Usuarios*/
+.containerVerUsuarios {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 200px auto 0 auto;
+}
+
+#usuariosTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#usuariosTable, #usuariosTable th, #usuariosTable td {
+    border: 1px solid #000000;
+}
+
+#usuariosTable th, #usuariosTable td {
+    padding: 10px;
+    text-align: left;
+}
+
+#usuariosTable th {
+    background-color: #b0dcd6;
+    color: #000000;
+}
+
+#usuariosTable .thumbnail {
+    width: 50px;
+    height: 50px;
+}
+
+#usuariosTable .btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#usuariosTable .btn-edit {
+    background-color: #007bff;
+    color: #fff;
+    margin-left: 20px;
+}
+
+#usuariosTable .btn-edit:hover {
+    background-color: #0056b3;
+}
+
+#usuariosTable .btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+    margin-left: 12px;
+}
+
+#usuariosTable .btn-delete:hover {
+    background-color: #c82333;
+}

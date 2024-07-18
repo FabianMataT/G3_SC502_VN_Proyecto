@@ -115,6 +115,17 @@ function head(){
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i>
+                                    <img src="dist/img/administrador.png"
+                                    alt="Usuarios" width="25" height="25">
+                                </i>
+                                <p class="text-white-custom">
+                                Ver usuarios
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -152,30 +163,6 @@ function head(){
         
         </nav>
       ';
-    }
-
-    function CrudPosts(){
-        echo '
-            <div class="container">
-                <h1>CRUD de Publicaciones</h1>
-
-                <form id="publicationForm">
-                    <input type="hidden" id="publicationId">
-                    <div>
-                        <label for="title">Título</label>
-                        <input type="text" id="title" required>
-                    </div>
-                    <div>
-                        <label for="description">Descripción</label>
-                        <textarea id="description" required></textarea>
-                    </div>
-                    <div>
-                        <label for="image">Imagen</label>
-                        <input type="file" id="image" accept="image/*" required>
-                    </div>
-                    <button type="submit" id="saveBtn">Guardar</button>
-                </form>
-            </div>';
     }
 
 ?>
