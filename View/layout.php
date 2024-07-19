@@ -48,6 +48,14 @@ function head(){
                                        <p class="text-white-custom">Ver todas las mascotas</p>
                                     </a>
                                 </li>
+
+                       
+                                <li class="nav-item">
+                                    <a href="adoptarAnimalito.php" class="nav-link">
+                                       <p class="text-white-custom">Adoptar un animalito</p>
+                                    </a>
+                                </li>
+                            
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -104,7 +112,7 @@ function head(){
                             </ul>
                         </li>
                         <li class="text-white-custom">
-                            <a href="#" class="nav-link">
+                            <a href="donacion.php" class="nav-link">
                                 <i>
                                     <img src="dist/img/Donar.png"
                                     alt="Donar" width="25" height="25">

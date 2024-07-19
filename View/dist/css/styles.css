@@ -1,247 +1,397 @@
-.TextoCentrado
-{
-    text-align:center;
+.TextoCentrado {
+  text-align: center;
 }
 
 .text-white-custom {
-    color: black;
+  color: black;
 }
 
-aside{
-    background-color: #b0dcd6;
-    height: auto;
+aside {
+  background-color: #b0dcd6;
+  height: auto;
 }
 
 .nav-sidebar .nav-item {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
-
-
 
 /*--------------------------------------------------------------Login-----------------------------------------------------------------*/
-.content_login, .content_registro{
-    position: relative;
+.content_login,
+.content_registro {
+  position: relative;
 }
-.contenedor-imagen, .contenido-imagen {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-
+.contenedor-imagen,
+.contenido-imagen {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
 }
 .contenedor-imagen::before {
-    content: "";
-    position: absolute;
-    width: 700px;
-    height:600px;
-    background-color: #0b0b0c;
-    opacity: 0.5;
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 600px;
+  background-color: #0b0b0c;
+  opacity: 0.5;
 }
-.container-login, .container-registro{
-    position: absolute; 
-    top: 47%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    z-index: 1; 
-    text-align: left; 
-    color: white;
+.container-login,
+.container-registro {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: left;
+  color: white;
 }
 /*--------------------------------------------------------------Registro-----------------------------------------------------------------*/
 .contenido-imagen::before {
-    content: "";
-    position: absolute;
-    width: 700px;
-    height:650px;
-    background-color: #0b0b0c;
-    opacity: 0.5;
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 650px;
+  background-color: #0b0b0c;
+  opacity: 0.5;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 /*Crear producto*/
 .container_producto {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 200px auto 0 auto;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 200px auto 0 auto;
 }
 
 #publicationForm {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 #publicationForm div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #publicationForm label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #495057;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #495057;
 }
 
 #publicationForm input[type="text"],
 #publicationForm textarea {
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #495057;
-    background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #495057;
+  background-color: #fff;
 }
 
 #publicationForm input[type="file"] {
-    font-size: 16px;
-    color: #495057;
+  font-size: 16px;
+  color: #495057;
 }
 
 #publicationForm button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 #publicationForm button[type="submit"]:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 /*Ver productos*/
 
 .containerVerProductos {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 1200px;
-    margin: 200px auto 0 auto;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 200px auto 0 auto;
 }
 
 #publicationTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-#publicationTable, #publicationTable th, #publicationTable td {
-    border: 1px solid #000000;
+#publicationTable,
+#publicationTable th,
+#publicationTable td {
+  border: 1px solid #000000;
 }
 
-#publicationTable th, #publicationTable td {
-    padding: 10px;
-    text-align: left;
+#publicationTable th,
+#publicationTable td {
+  padding: 10px;
+  text-align: left;
 }
 
 #publicationTable th {
-    background-color: #b0dcd6;
-    color: #000000;
+  background-color: #b0dcd6;
+  color: #000000;
 }
 
 #publicationTable .thumbnail {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 #publicationTable .btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 #publicationTable .btn-edit {
-    background-color: #007bff;
-    color: #fff;
+  background-color: #007bff;
+  color: #fff;
 }
 
 #publicationTable .btn-edit:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #publicationTable .btn-delete {
-    background-color: #dc3545;
-    color: #fff;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 #publicationTable .btn-delete:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
 /*Ver Usuarios*/
 .containerVerUsuarios {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 1200px;
-    margin: 200px auto 0 auto;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 200px auto 0 auto;
 }
 
 #usuariosTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-#usuariosTable, #usuariosTable th, #usuariosTable td {
-    border: 1px solid #000000;
+#usuariosTable,
+#usuariosTable th,
+#usuariosTable td {
+  border: 1px solid #000000;
 }
 
-#usuariosTable th, #usuariosTable td {
-    padding: 10px;
-    text-align: left;
+#usuariosTable th,
+#usuariosTable td {
+  padding: 10px;
+  text-align: left;
 }
 
 #usuariosTable th {
-    background-color: #b0dcd6;
-    color: #000000;
+  background-color: #b0dcd6;
+  color: #000000;
 }
 
 #usuariosTable .thumbnail {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 #usuariosTable .btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 #usuariosTable .btn-edit {
-    background-color: #007bff;
-    color: #fff;
-    margin-left: 20px;
+  background-color: #007bff;
+  color: #fff;
+  margin-left: 20px;
 }
 
 #usuariosTable .btn-edit:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #usuariosTable .btn-delete {
-    background-color: #dc3545;
-    color: #fff;
-    margin-left: 12px;
+  background-color: #dc3545;
+  color: #fff;
+  margin-left: 12px;
 }
 
 #usuariosTable .btn-delete:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
+
+/*--------------------------------------------------------------Donacion-----------------------------------------------------------------*/
+
+.titulo-donacion {
+  text-align: center;
+  color: #b0dcd6;
+  padding-top: 15%;
+  margin-bottom: auto;
+  font-size: 80px;
+}
+
+.h2-donacion {
+  text-align: center;
+  color: #a59898;
+  font-style: normal;
+  margin-bottom: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.h3-donacion {
+  text-align: center;
+  color: #a59898;
+  font-style: normal;
+  margin-bottom: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.containerB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-custom1 {
+  background-color: #b0dcd6;
+  color: white;
+  padding: 20px 200px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-custom1:hover {
+  background-color: #64d8c9;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-custom1:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #06584d;
+  background-color: #64d8c9;
+}
+
+.btn-custom1 a {
+  color: white;
+  text-decoration: none;
+}
+
+/*--------------------------------------------------------------formularioDonacion-----------------------------------------------------------------*/
+
+.titulo-generico {
+  text-align: center;
+  color: #b0dcd6;
+  padding-top: 5%;
+  margin-bottom: auto;
+  font-size: 80px;
+}
+.form-donacion {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group input,
+.form-group label {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.form-group input[type="file"] {
+  padding: 3px;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: left;
+}
+
+/*--------------------------------------------------------------adopcion-----------------------------------------------------------------*/
+
+.texto-animalito {
+  color: #b0dcd6;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.descripcion-animalito {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #a59898;
+}
+
+textarea {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  outline: none;
+  overflow: auto;
+  height: auto;
+  margin-top: 10px;
+  color: #a59898;
+}
+
