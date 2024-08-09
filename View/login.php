@@ -1,6 +1,6 @@
 <?php
     include_once 'layout.php';
-    include_once '../Controller/login_Controller.php'; 
+    include_once '../Controller/login_Controller.php';
 ?>
 
 <!DOCTYPE html>

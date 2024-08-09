@@ -1,6 +1,7 @@
 <?php
-include_once 'layout.php';
-include_once '../Controller/registro_Controller.php';
+    include_once 'layout.php';
+    include_once '../Controller/registro_Controller.php';
+    $Dropdown_Menu_Provincias = Dropdown_Menu_Provincias();
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +77,7 @@ head();
                         <div id="camposUsuario" class="hidden">
                             <label for="empresa" class="form-label">Empresa</label>
                             <div class="input-group mb-3">
-                                <input type="text" id="empresa" name="empresa" class="form-control" placeholder="empresa" required>
+                                <input type="text" id="empresa" name="empresa" class="form-control" placeholder="empresa">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-user"></span>
@@ -85,23 +86,21 @@ head();
                             </div>
                             <label for="motivo" class="form-label">Ubicación</label>
                             <div class="input-group mb-3">
-                                <select id="provincia" name="provincia" class="form-control" required>
-                                    <option value="san jose">san jose</option>
-                                    <option value="cartago">cartago</option>
+                                <select id="provincia" name="provincia" class="form-control">
+                                <option value="" selected="" disabled="">Provincia</option>
+                                <?php echo $Dropdown_Menu_Provincias;?>
                                 </select>
-                                <select id="canton" name="canton" class="form-control" required>
-                                    <option value="jose">Central</option>
-                                    <option value="tago">cartago</option>
+                                <select id="canton" name="canton" class="form-control">
+                                <option value="" selected="" disabled="">Cantón</option>
                                 </select>
-                                <select id="distrito" name="provincia" class="form-control" required>
-                                    <option value="df">Safsf</option>
-                                    <option value="ctago">Pitahaya</option>
+                                <select id="distrito" name="provincia" class="form-control">
+                                <option value="" selected="" disabled="">Distrito</option>
                                 </select>
-                                <input type="text" id="otrassenas" name="otrassenas" class="form-control" placeholder="Otras señas" required>
+                                <input type="text" id="otrassenas" name="otrassenas" class="form-control" placeholder="Otras señas">
                             </div>
                             <label for="motivo" class="form-label">¿Porque quieres tener un perfil "profesional"?</label>
                             <div class="input-group mb-3">
-                                <input type="text" id="motivo" name="motivo" class="form-control" required>
+                                <input type="text" id="motivo" name="motivo" class="form-control">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-user"></span>
@@ -121,6 +120,7 @@ head();
             </section>
         </div>
     </div>
+
 
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
