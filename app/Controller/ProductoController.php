@@ -2,9 +2,9 @@
 
 session_start();
 
-require_once '../../Model/conexion.php';
-require_once '../../Model/Methods/ProductoM.php';
-require_once '../../Model/Entities/Producto.php';
+require_once '../Model/conexion.php';
+require_once '../Model/Methods/ProductoM.php';
+require_once '../Model/Entities/Producto.php';
 
 class ProductoController
 {

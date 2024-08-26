@@ -4,9 +4,9 @@
 session_start();
 
 // Incluye los archivos necesarios para la conexión a la base de datos, métodos del modelo y entidades
-require_once '../../Model/conexion.php';
-require_once '../../Model/Methods/CarnetM.php';
-require_once '../../Model/Entities/Carnet.php';
+require_once '../Model/conexion.php';
+require_once '../Model/Methods/CarnetM.php';
+require_once '../Model/Entities/Carnet.php';
 
 // Define la clase CarnetController
 class CarnetController

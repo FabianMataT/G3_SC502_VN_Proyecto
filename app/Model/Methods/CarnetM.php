@@ -21,7 +21,7 @@ class CarnetM
                 $carnet->setId_estado($fila["ID_ESTADO"]);
                 $carnet->setNombre_animal($fila["NOMBRE_ANIMAL"]);
                 $carnet->setRaza($fila["RAZA"]);
-                $carnet->setAnio_rescate($fila["ANIO_RESCATE"]);
+                $carnet->setAnio_rescate($fila["AÑO_RESCATE"]);
                 $carnet->setDescripcion($fila["DESCRIPCION"]);
                 $carnet->setEstado($fila["ESTADO"]);
                 $carnet->setImagen($fila["IMAGEN"]);
@@ -43,7 +43,7 @@ class CarnetM
             . "(`ID_ESTADO`, "
             . "`NOMBRE_ANIMAL`, "
             . "`RAZA`, "
-            . "`ANIO_RESCATE`, "
+            . "`AÑO_RESCATE`, "
             . "`DESCRIPCION`, "
             . "`ESTADO`, "
             . "`IMAGEN`) "
@@ -81,7 +81,7 @@ class CarnetM
                 $p->setId_estado($fila["ID_ESTADO"]);
                 $p->setNombre_animal($fila["NOMBRE_ANIMAL"]);
                 $p->setRaza($fila["RAZA"]);
-                $p->setAnio_rescate($fila["ANIO_RESCATE"]);
+                $p->setAnio_rescate($fila["AÑO_RESCATE"]);
                 $p->setEstado($fila["ESTADO"]);
                 $p->setImagen($fila["IMAGEN"]);
             }
@@ -109,6 +109,7 @@ class CarnetM
         $conexion->CerrarBaseDatos();
         return $retVal;
     }
+
 
     function IDEstado()
     {

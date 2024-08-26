@@ -6,7 +6,7 @@ class Conexion
     function AbrirBaseDatos($query)
     {
         // Datos de la conexión
-        $servidor = 'localhost';
+        $servidor = 'localhost:3306';
         $baseDatos = 'G3_SC502_VN_PPROYECTO';
         $usuario = 'FIND_MY_PET';
         $contrasena = '12345';
