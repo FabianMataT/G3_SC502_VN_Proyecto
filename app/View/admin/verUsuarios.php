@@ -42,10 +42,10 @@ head();
             <div class="containerVerUsuarios">
                 <h1>Lista de Usuarios</h1>
 
-                <div class="filter-buttons">
-                    <a href="verUsuarios.php?estado=1" class="btn btn-primary mb-3">Activos</a>
-                    <a href="verUsuarios.php?estado=2" class="btn btn-danger mb-3">Inactivos</a>
-                    <a href="verUsuarios.php" class="btn btn-info mb-3">Todos</a>
+                <div class="filter-buttons mb-3">
+                    <a href="verUsuarios.php?estado=1" class="btn btn-primary">Activos</a>
+                    <a href="verUsuarios.php?estado=2" class="btn btn-danger">Inactivos</a>
+                    <a href="verUsuarios.php" class="btn btn-info">Todos</a>
                 </div>
 
                 <table id="usuariosTable" class="table">
@@ -71,14 +71,15 @@ head();
                                     <td>
                                         <?php if (isset($usuario['ID_ESTADO'])): ?>
                                             <?php if ($usuario['ID_ESTADO'] == 1): ?>
-                                                <a href="#" class="btn btn-warning" onclick="confirmarAccion('bloquear', <?php echo $usuario['ID_USUARIO']; ?>)">Bloquear</a>
+                                                <button class="btn btn-warning" onclick="confirmarAccion('bloquear', <?php echo $usuario['ID_USUARIO']; ?>)">Bloquear</button>
                                             <?php elseif ($usuario['ID_ESTADO'] == 2): ?>
-                                                <a href="#" class="btn btn-success" onclick="confirmarAccion('desbloquear', <?php echo $usuario['ID_USUARIO']; ?>)">Desbloquear</a>
+                                                <button class="btn btn-success" onclick="confirmarAccion('desbloquear', <?php echo $usuario['ID_USUARIO']; ?>)">Desbloquear</button>
                                             <?php endif; ?>
                                         <?php else: ?>
                                             <span>No disponible</span>
                                         <?php endif; ?>
-                                        <a href="#" class="btn btn-danger ml-2" onclick="confirmarAccion('eliminar', <?php echo $usuario['ID_USUARIO']; ?>)">Eliminar</a>
+                                        <button class="btn btn-danger ml-1" onclick="confirmarAccion('eliminar', <?php echo $usuario['ID_USUARIO']; ?>)">Eliminar</button>
+                                        <a class="ml-1 btn btn-info" href="editarRolUsuario.php?id_usuario=<?php echo urlencode($usuario['ID_USUARIO']); ?>" class="btn btn-info ml-2">Cambiar Rol</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -94,15 +95,13 @@ head();
 
     </div>
 
-    <!-- Scripts -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmarAccion(accion, id_usuario) {
-            let accionTexto;
-
+            let accionTexto = '';
             if (accion === 'bloquear') {
                 accionTexto = 'bloquear';
             } else if (accion === 'desbloquear') {
@@ -110,7 +109,6 @@ head();
             } else if (accion === 'eliminar') {
                 accionTexto = 'eliminar';
             }
-
             Swal.fire({
                 title: `¿Estás seguro de que deseas ${accionTexto} este usuario?`,
                 icon: 'warning',

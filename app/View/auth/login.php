@@ -1,6 +1,6 @@
 <?php
-    include_once '../layout.php';
-    include_once '../../Controller/login_Controller.php';
+include_once '../layout.php';
+include_once '../../Controller/login_Controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ head();
         <div class="content-wrapper">
             <section class="content_login">
                 <div class="contenedor-imagen">
-                    <img class="imagen" src="https://us.123rf.com/450wm/photodeti/photodeti1807/photodeti180700124/104281525-pembroke-welsh-corgi-cachorro-y-gatito-atigrado-se-miran-en-un-c%C3%A9sped-de-verano.jpg?ver=6" alt="login" width="700px" height="600px"/>
+                    <img class="imagen" src="https://us.123rf.com/450wm/photodeti/photodeti1807/photodeti180700124/104281525-pembroke-welsh-corgi-cachorro-y-gatito-atigrado-se-miran-en-un-c%C3%A9sped-de-verano.jpg?ver=6" alt="login" width="700px" height="600px" />
                 </div>
                 <div class="container-login">
                     <form action="" method="post">
@@ -64,7 +64,21 @@ head();
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        $(document).ready(function() {
+            <?php if (isset($_SESSION['error_mensaje'])): ?>
+                Swal.fire({
+                    title: 'Error',
+                    text: '<?php echo $_SESSION['error_mensaje']; ?>',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                <?php unset($_SESSION['error_mensaje']); ?>
+            <?php endif; ?>
+        });
+    </script>
 </body>
 
 </html>

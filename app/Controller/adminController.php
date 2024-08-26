@@ -4,6 +4,7 @@ include_once '../layout.php';
 
 class adminController
 {
+    //Funciones usadas en verUsuarios.php
     public static function ObtenerUsuarios($estado = null)
     {
         $conexion = AbrirBaseDatos();
@@ -60,6 +61,60 @@ class adminController
 
         $sql = "DELETE FROM fide_tab_usuario WHERE ID_USUARIO = $id_usuario";
 
+        $resultado = mysqli_query($conexion, $sql);
+
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
+    }
+
+
+
+    //Funciones Usadas en editarRolUsuario.php
+    public static function ObtenerUsuarioPorID($id_usuario)
+    {
+        $conexion = AbrirBaseDatos();
+        $id_usuario = intval($id_usuario);
+
+        $sql = "SELECT u.NOMBRE_USUARIO AS username, 
+                       CONCAT(u.NOMBRE, ' ', u.APPELIDO1, ' ', u.APPELIDO2) AS nombre_completo, 
+                       u.ID_ROL
+                FROM fide_tab_usuario u
+                WHERE u.ID_USUARIO = $id_usuario";
+
+        $resultado = mysqli_query($conexion, $sql);
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        CerrarBaseDatos($conexion);
+
+        return $usuario;
+    }
+
+    public static function ObtenerRoles()
+    {
+        $conexion = AbrirBaseDatos();
+
+        $sql = "SELECT ID_ROL, NOMBRE_ROL FROM fide_tab_rol";
+        $resultado = mysqli_query($conexion, $sql);
+
+        $roles = [];
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            $roles[] = $fila;
+        }
+
+        CerrarBaseDatos($conexion);
+
+        return $roles;
+    }
+
+    public static function ActualizarRolUsuario($id_usuario, $id_rol)
+    {
+        $conexion = AbrirBaseDatos();
+
+        $id_usuario = intval($id_usuario);
+        $id_rol = intval($id_rol);
+
+        $sql = "UPDATE fide_tab_usuario SET ID_ROL = $id_rol WHERE ID_USUARIO = $id_usuario";
         $resultado = mysqli_query($conexion, $sql);
 
         CerrarBaseDatos($conexion);
