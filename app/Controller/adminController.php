@@ -121,4 +121,41 @@ class adminController
 
         return $resultado;
     }
+
+
+    public static function ObtenerUsuarioPorIDDonacion($id_usuario)
+    {
+        $conexion = AbrirBaseDatos();
+        $id_usuario = intval($id_usuario);
+
+        $sql = "SELECT u.NOMBRE_USUARIO AS username, 
+                       CONCAT(u.NOMBRE, ' ', u.APPELIDO1, ' ', u.APPELIDO2) AS nombre_completo, 
+                       u.TELEFONO,
+                       u.CORREO
+                FROM fide_tab_usuario u
+                WHERE u.ID_USUARIO = $id_usuario";
+
+        $resultado = mysqli_query($conexion, $sql);
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        CerrarBaseDatos($conexion);
+
+        return $usuario;
+    }
+
+    public static function GuardarDonacion($id_usuario, $ruta_comprobante)
+    {
+        $conexion = AbrirBaseDatos();
+
+        $id_usuario = intval($id_usuario);
+        $ruta_comprobante = mysqli_real_escape_string($conexion, $ruta_comprobante);
+
+        $sql = "INSERT INTO fide_tab_donacion (ID_USUARIO, LINK_COMPROBANTE) VALUES ($id_usuario, '$ruta_comprobante')";
+
+        $resultado = mysqli_query($conexion, $sql);
+
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
+    }
 }

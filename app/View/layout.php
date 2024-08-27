@@ -52,7 +52,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="../animales/carnetTodos.php" class="nav-link">
                                         <p class="text-white-custom">Ver todas las mascotas</p>
                                         </a>
                                     </li>
@@ -118,7 +118,7 @@
                                 </ul>
                             </li>
                             <li class="text-white-custom">
-                                <a href="../donaciones/donacion.php" class="nav-link">
+                                <a href="../donaciones/formularioDonacion.php" class="nav-link">
                                     <i>
                                         <img src="../dist/img/Donar.png"
                                         alt="Donar" width="25" height="25">
@@ -179,7 +179,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="../animales/carnetTodos.php" class="nav-link">
                                         <p class="text-white-custom">Ver todas las mascotas</p>
                                         </a>
                                     </li>
@@ -211,7 +211,7 @@
                                 </ul>
                             </li>
                             <li class="text-white-custom">
-                                <a href="../donaciones/donacion.php" class="nav-link">
+                                <a href="../donaciones/formularioDonacion.php" class="nav-link">
                                     <i>
                                         <img src="../dist/img/Donar.png"
                                         alt="Donar" width="25" height="25">
