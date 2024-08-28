@@ -1,7 +1,7 @@
 <?php
-    include_once '../layout.php';
-    include_once '../../Controller/registro_Controller.php';
-    $Dropdown_Menu_Provincias = Dropdown_Menu_Provincias();
+include_once '../layout.php';
+include_once '../../Controller/registro_Controller.php';
+$Dropdown_Menu_Provincias = Dropdown_Menu_Provincias();
 ?>
 
 <!DOCTYPE html>
@@ -73,41 +73,6 @@ head();
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div id="camposUsuario" class="hidden">
-                            <label for="empresa" class="form-label">Empresa</label>
-                            <div class="input-group mb-3">
-                                <input type="text" id="empresa" name="empresa" class="form-control" placeholder="empresa">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-user"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <label for="motivo" class="form-label">Ubicación</label>
-                            <div class="input-group mb-3">
-                                <select id="provincia" name="provincia" class="form-control">
-                                <option value="" selected="" disabled="">Provincia</option>
-                                <?php echo $Dropdown_Menu_Provincias;?>
-                                </select>
-                                <select id="canton" name="canton" class="form-control">
-                                <option value="" selected="" disabled="">Cantón</option>
-                                </select>
-                                <select id="distrito" name="provincia" class="form-control">
-                                <option value="" selected="" disabled="">Distrito</option>
-                                </select>
-                                <input type="text" id="otrassenas" name="otrassenas" class="form-control" placeholder="Otras señas">
-                            </div>
-                            <label for="motivo" class="form-label">¿Porque quieres tener un perfil "profesional"?</label>
-                            <div class="input-group mb-3">
-                                <input type="text" id="motivo" name="motivo" class="form-control">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-user"></span>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                         <?php
                         if (isset($_POST["msj"])) {

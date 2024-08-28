@@ -55,9 +55,9 @@
         return $htmlOpciones;
     }
 
-    function Dropdown_Menu_Distritos($COD_PROVINCIA, $COD_CANTON)
+    function Dropdown_Menu_Distritos($COD_CANTON)
     {
-        $distritos = getDistritos($COD_PROVINCIA, $COD_CANTON);
+        $distritos = getDistritos($COD_CANTON);
         $htmlOpciones = '';
     
         if (!empty($distritos)) {
@@ -71,4 +71,21 @@
         return $htmlOpciones;
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] === 'cargarCanton') {
+                $codigoProvincia = $_POST['codigoProvincia'];
+                $resultados = getCantones($codigoProvincia);
+                echo ($resultados);
+                exit;
+            } elseif ($_POST['action'] === 'cargarDistrito') {
+                $codigoCanton = $_POST['codigoCanton'];
+                $resultados = getDistritos($codigoCanton);
+    
+                echo ($resultados);
+            }
+        }
+    }
+    
 ?>

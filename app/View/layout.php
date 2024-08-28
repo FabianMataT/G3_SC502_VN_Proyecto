@@ -128,6 +128,16 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../perfil/verPerfil.php" class="nav-link">
+                                    <i>
+                                        <img src="../dist/img/perfil.png" alt="Perfil" width="30" height="30">
+                                    </i>
+                                    <p class="text-white-custom">
+                                        Ver Perfil
+                                    </p>
+                                </a>
                             </li>';
                             if($_SESSION["id_rol"] == 1) 
                             {
@@ -221,7 +231,22 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                            </li>
+                            </li>';
+                            if($_SESSION["id_rol"] == 2) 
+                            {
+                            echo '
+                            <li class="nav-item">
+                                <a href="../perfil/verPerfil.php" class="nav-link">
+                                    <i>
+                                        <img src="../dist/img/perfil.png" alt="Perfil" width="30" height="30">
+                                    </i>
+                                    <p class="text-white-custom">
+                                        Ver Perfil
+                                    </p>
+                                </a>
+                            </li>';
+                            }
+                        echo'
                         </ul>
                     </nav>
                 </div>

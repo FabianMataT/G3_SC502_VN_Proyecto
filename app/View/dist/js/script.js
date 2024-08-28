@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     const tipoCuenta = document.getElementById("tipoCuenta");
-    const camposUsuario = document.getElementById("camposUsuario");
 
     if (tipoCuenta) {
         tipoCuenta.addEventListener("change", function () {
             if (this.value === "usuario") {
-                camposUsuario.classList.add("hidden");
+                window.location.href = "http://localhost/G3_SC502_VN_Proyecto/app/View/auth/registro.php";
             } else {
-                camposUsuario.classList.remove("hidden");
+                window.location.href = "http://localhost/G3_SC502_VN_Proyecto/app/View/auth/registro_profecional.php";
             }
         });
     }
-
    
 });

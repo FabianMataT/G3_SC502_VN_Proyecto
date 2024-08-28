@@ -1,5 +1,5 @@
 <?php 
-    include_once "../../Model/conexionDB.php";
+    include_once "conexionDB.php";
 
     function getProvincias() {
         $conexion = AbrirBaseDatos();
@@ -27,9 +27,9 @@
         return $cantones;
     }
 
-    function getDistritos($COD_PROVINCIA, $COD_CANTON) {
+    function getDistritos($COD_CANTON) {
         $conexion = AbrirBaseDatos();
-        $sql = $conexion->query("SELECT * FROM fide_tab_canton WHERE COD_PROVINCIA='$COD_PROVINCIA' AND COD_CANTON='$COD_CANTON'");
+        $sql = $conexion->query("SELECT * FROM fide_tab_distrito WHERE COD_CANTON='$COD_CANTON'");
 
         $distritos = array();
 
