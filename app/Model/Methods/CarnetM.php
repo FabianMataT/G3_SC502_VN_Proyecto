@@ -35,6 +35,7 @@ class CarnetM
         return $retVal;
     }
 
+
     function NuevoCarnet(Carnet $carnet)
     {
         $retVal = false;
@@ -61,7 +62,6 @@ class CarnetM
         $conexion->CerrarBaseDatos();
         return $retVal;
     }
-
 
 
     function BuscarProducto($titulo)
@@ -143,4 +143,5 @@ class CarnetM
 
         return $retVal;
     }
+    
 }

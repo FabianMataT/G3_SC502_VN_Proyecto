@@ -12,8 +12,6 @@ class Carnet {
     private $estado;
     private $imagen;
 
-
-
     public function getId_carnet() {
         return $this->id_carnet;
     }

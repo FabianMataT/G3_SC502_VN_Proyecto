@@ -1,5 +1,4 @@
 <?php
-
 include_once '../layout.php';
 
 class adminController
@@ -10,17 +9,17 @@ class adminController
         $conexion = AbrirBaseDatos();
 
         $sql = "SELECT u.NOMBRE_USUARIO AS username, 
-                       CONCAT(u.NOMBRE, ' ', u.APPELIDO1, ' ', u.APPELIDO2) AS nombre_completo, 
-                       u.TELEFONO AS telefono, 
-                       u.CORREO AS email, 
-                       r.NOMBRE_ROL AS rol,
-                       u.ID_ESTADO,
-                       u.ID_USUARIO
-                FROM fide_tab_usuario u
-                JOIN fide_tab_rol r ON u.ID_ROL = r.ID_ROL";
+                   CONCAT(u.NOMBRE, ' ', u.APPELLIDO1, ' ', u.APPELLIDO2) AS nombre_completo, 
+                   u.TELEFONO AS telefono, 
+                   u.CORREO AS email, 
+                   r.NOMBRE_ROL AS rol,
+                   u.ESTADO,
+                   u.ID_USUARIO
+            FROM fide_tab_usuario u
+            JOIN fide_tab_rol r ON u.ID_ROL = r.ID_ROL";
 
         if ($estado !== null) {
-            $sql .= " WHERE u.ID_ESTADO = " . intval($estado);
+            $sql .= " WHERE u.ESTADO = " . intval($estado);
         }
 
         $resultado = mysqli_query($conexion, $sql);
@@ -37,6 +36,7 @@ class adminController
         return $usuarios;
     }
 
+
     public static function CambiarEstadoUsuario($id_usuario, $nuevo_estado)
     {
         $conexion = AbrirBaseDatos();
@@ -44,7 +44,7 @@ class adminController
         $id_usuario = intval($id_usuario);
         $nuevo_estado = intval($nuevo_estado);
 
-        $sql = "UPDATE fide_tab_usuario SET ID_ESTADO = $nuevo_estado WHERE ID_USUARIO = $id_usuario";
+        $sql = "UPDATE fide_tab_usuario SET ESTADO = $nuevo_estado WHERE ID_USUARIO = $id_usuario";
 
         $resultado = mysqli_query($conexion, $sql);
 
@@ -77,7 +77,7 @@ class adminController
         $id_usuario = intval($id_usuario);
 
         $sql = "SELECT u.NOMBRE_USUARIO AS username, 
-                       CONCAT(u.NOMBRE, ' ', u.APPELIDO1, ' ', u.APPELIDO2) AS nombre_completo, 
+                       CONCAT(u.NOMBRE, ' ', u.APPELLIDO1, ' ', u.APPELLIDO2) AS nombre_completo, 
                        u.ID_ROL
                 FROM fide_tab_usuario u
                 WHERE u.ID_USUARIO = $id_usuario";
