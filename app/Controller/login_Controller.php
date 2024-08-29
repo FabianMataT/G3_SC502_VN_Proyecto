@@ -1,5 +1,5 @@
 <?php
-include_once '../../Model/usuarioModel.php';
+include_once  __DIR__ . '/../Model/conexionDB.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -22,7 +22,6 @@ if (!empty($_POST["btnIniciarSesion"])) {
     if ($datos = $sql->fetch_object()) {
         if ($datos->ID_ESTADO == 2) {
             CerrarBaseDatos($conexion);
-            // Guardamos el mensaje de error en una sesión para mostrarlo en la vista
             $_SESSION['error_mensaje'] = "ERROR: ESTE USUARIO FUE BLOQUEADO. CONTACTE CON UN ADMINISTRADOR PARA SU DESBLOQUEO.";
         } elseif ($datos->ID_ROL == 4) {
             CerrarBaseDatos($conexion);

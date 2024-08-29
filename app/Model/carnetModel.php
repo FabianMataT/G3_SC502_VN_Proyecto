@@ -24,14 +24,19 @@ class carnetModel
     public static function obtenerCarnets()
     {
         $conexion = AbrirBaseDatos();
-        $sql = "SELECT * FROM fide_tab_carnet";
-        $resultado = $conexion->query($sql);
+        $idUsuario = $_SESSION['id_usuario'];
 
-        $carnets = [];
-        if ($resultado) {
-            while ($fila = $resultado->fetch_assoc()) {
-                $carnets[] = $fila;
-            }
+        $sql = "SELECT * FROM fide_tab_carnet 
+                ORDER BY CASE 
+                    WHEN ID_USUARIO = '$idUsuario' THEN 0 
+                    ELSE 1 
+                END, FECHA_RESCATE DESC";
+
+        $resultado = $conexion->query($sql);
+        $carnets = array();
+
+        while ($row = $resultado->fetch_assoc()) {
+            $carnets[] = $row;
         }
 
         CerrarBaseDatos($conexion);
