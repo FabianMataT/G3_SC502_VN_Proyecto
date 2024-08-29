@@ -63,11 +63,11 @@ head();
     <script>
         var idToUpdate;
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             CargarTabla();
             CargarTablaCarnet();
 
-            $(document).on("click", ".cambiar-btn", function () {
+            $(document).on("click", ".cambiar-btn", function() {
                 var id = $(this).data("id");
                 console.log("ID seleccionado:", id);
                 idToUpdate = id;
@@ -77,7 +77,7 @@ head();
         });
 
         function CargarTabla() {
-            $.getJSON("/G3_SC502_VN_Proyecto/app/Controller/ProductoController.php?action=Todos", true, function (datos) {
+            $.getJSON("/G3_SC502_VN_Proyecto/app/Controller/ProductoController.php?action=Todos", true, function(datos) {
                 console.log(datos); // Esto te ayudará a ver qué datos están siendo recibidos
                 var contenido = '';
                 for (var i = 0; i < datos.length; i++) {
@@ -92,13 +92,13 @@ head();
                         '</div>';
                 }
                 $("#contenidoProductos").html(contenido);
-            }).fail(function (xhr, status, error) {
+            }).fail(function(xhr, status, error) {
                 console.error('Error al cargar los productos:', xhr.responseText); // Muestra la respuesta completa del servidor
             });
         }
 
         function CargarTablaCarnet() {
-            $.getJSON("/G3_SC502_VN_Proyecto/app/Controller/CarnetController.php?action=Todos", true, function (datos) {
+            $.getJSON("/G3_SC502_VN_Proyecto/app/Controller/CarnetController.php?action=Todos", true, function(datos) {
                 console.log(datos); // Esto te ayudará a ver qué datos están siendo recibidos
                 var contenido = '';
                 for (var i = 0; i < datos.length; i++) {
@@ -113,12 +113,10 @@ head();
                         '</div>';
                 }
                 $("#contenidoCarnet").html(contenido);
-            }).fail(function (xhr, status, error) {
+            }).fail(function(xhr, status, error) {
                 console.error('Error al cargar los productos:', xhr.responseText); // Muestra la respuesta completa del servidor
             });
         }
-
-
     </script>
 </body>
 

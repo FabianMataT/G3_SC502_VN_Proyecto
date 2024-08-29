@@ -27,7 +27,6 @@ head();
                     <h1 style="text-align:center;" class="text-white">Crear Carnet Animal</h1>
 
                     <form class="m-5" id="publicationForm" enctype="multipart/form-data" method="post">
-                        <input type="hidden" id="publicationId">
                         <div>
                             <label class="text-white" for="nombre_animal">Nombre de mascota</label>
                             <input type="text" id="nombre_animal" name="nombre_animal" required>
@@ -37,15 +36,8 @@ head();
                             <input type="text" id="raza" name="raza" required>
                         </div>
                         <div>
-                            <label class="text-white" for="estado">Estado de la mascota</label>
-                            <select id="id_estado" name="id_estado" required>
-                                <option value="">Seleccione el estado</option>
-                                <!-- Las opciones se cargarán dinámicamente con JavaScript -->
-                            </select>
-                        </div>
-                        <div>
                             <label class="text-white" for="anio_rescate">Año de rescate de la mascota</label>
-                            <input type="text" id="anio_rescate" name="anio_rescate" required>
+                            <input type="date" id="anio_rescate" name="anio_rescate" required>
                         </div>
                         <div>
                             <label class="text-white" for="descripcion">Descripción</label>
@@ -68,59 +60,53 @@ head();
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function () {
-            cargarSelect();
-
-            function cargarSelect() {
-                $.ajax({
-                    url: '/G3_SC502_VN_Proyecto/app/Controller/CarnetController.php?action=IDEstado',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response && response.length > 0) {
-                            var selectEstado = $('#id_estado');
-                            selectEstado.empty();
-
-                            $.each(response, function (index, estado) {
-                                var optionText = estado.nombre_estado;
-                                var optionValue = estado.id_estado;
-
-                                selectEstado.append($('<option>', {
-                                    value: optionValue,
-                                    text: optionText
-                                }));
-                            });
-                        } else {
-                            alert('No se encontraron estados disponibles.');
-                        }
-                    },
-                    error: function () {
-                        alert('Hubo un error al cargar los estados.');
-                    }
-                });
-            }
-
-            $('#saveBtn').on('click', function (e) {
+        $(document).ready(function() {
+            $('#saveBtn').on('click', function(e) {
                 e.preventDefault();
 
                 var formData = new FormData($('#publicationForm')[0]);
 
                 $.ajax({
-                    url: '/G3_SC502_VN_Proyecto/app/Controller/CarnetController.php?action=Crear',
+                    url: '../../Controller/carnetController.php?action=Crear',
                     type: 'POST',
                     data: formData,
                     contentType: false,
                     processData: false,
-                    success: function (response) {
-                        if (response.success) {
-                            alert('Carnet creado exitosamente.');
-                        } else {
-                            alert('Hubo un error al crear el carnet.');
+                    success: function(response) {
+                        try {
+                            var data = JSON.parse(response);
+                            if (data.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Éxito',
+                                    text: data.message,
+                                }).then(() => {
+                                    $('#publicationForm')[0].reset();
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: data.message,
+                                });
+                            }
+                        } catch (e) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error de respuesta',
+                                text: 'La respuesta no es un JSON válido: ' + response,
+                            });
+                            console.error("Respuesta del servidor:", response);
                         }
                     },
-                    error: function () {
-                        alert('Hubo un error en la solicitud.');
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Hubo un error en la solicitud.',
+                        });
                     }
                 });
             });

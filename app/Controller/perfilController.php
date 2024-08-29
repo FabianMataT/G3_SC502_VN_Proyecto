@@ -54,29 +54,44 @@ class PerfilController
         return ['success' => true];
     }
 
-    public static function EliminarCuenta($id_usuario)
-{
-    $conexion = AbrirBaseDatos();
-    $sql = "DELETE FROM fide_tab_usuario WHERE ID_USUARIO = $id_usuario";
-    $resultado = mysqli_query($conexion, $sql);
+    public static function EliminarUsuario($id_usuario)
+    {
+        $conexion = AbrirBaseDatos();
 
-    CerrarBaseDatos($conexion);
+        $id_usuario = intval($id_usuario);
 
-    if ($resultado) {
-        header("Location: ../app/View/auth/login.php");
-        exit();
+        $sql = "DELETE FROM fide_tab_usuario WHERE ID_USUARIO = $id_usuario";
+
+        $resultado = mysqli_query($conexion, $sql);
+
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
     }
-
-    return $resultado;
-}
-
 }
 
 if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
 
-    if ($action === 'update') {
+    if ($action === 'delete') {
+        if (!isset($_SESSION['id_usuario'])) {
+            header('Location: ../../app/View/auth/login.php');
+            exit;
+        }
+
+        $id_usuario = intval($_SESSION['id_usuario']);
+        $resultado = PerfilController::EliminarUsuario($id_usuario);
+
+        if ($resultado) {
+            session_destroy();
+
+            header('Location: ../../app/View/auth/login.php');
+            exit();
+        } else {
+            echo "Error al eliminar el usuario.";
+        }
+    } elseif ($action === 'update') {
         header('Content-Type: application/json');
 
         if (!isset($_SESSION['id_usuario'])) {

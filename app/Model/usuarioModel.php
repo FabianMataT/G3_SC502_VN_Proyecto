@@ -27,7 +27,7 @@
         } else {
             if ($tipoCuenta === "usuario") {
                 $rol = 2;
-                $conexion->query("INSERT INTO FIDE_TAB_USUARIO (ID_ROL, NOMBRE_USUARIO, NOMBRE, APPELIDO1, APPELIDO2, TELEFONO, CORREO, CONTRASENA) 
+                $conexion->query("INSERT INTO FIDE_TAB_USUARIO (ID_ROL, NOMBRE_USUARIO, NOMBRE, APPELLIDO1, APPELLIDO2, TELEFONO, CORREO, CONTRASENA) 
                     VALUES ('$rol', '$username', '$nombre', '$apellido1', '$apellido2', '$telefono', '$correo', '$contrasena')");
                 return null; 
             }
@@ -47,7 +47,7 @@
         } else {
             if ($tipoCuenta === "profecional") {
                 $rol = 4;
-                $conexion->query("INSERT INTO FIDE_TAB_USUARIO (ID_ROL, NOMBRE_USUARIO, NOMBRE, APPELIDO1, APPELIDO2, TELEFONO, CORREO, CONTRASENA) 
+                $conexion->query("INSERT INTO FIDE_TAB_USUARIO (ID_ROL, NOMBRE_USUARIO, NOMBRE, APPELLIDO1, APPELLIDO2, TELEFONO, CORREO, CONTRASENA) 
                     VALUES ('$rol', '$username', '$nombre', '$apellido1', '$apellido2', '$telefono', '$correo', '$contrasena')");
                 $conexion->query("INSERT INTO FIDE_TAB_UBICACION (COD_PROVINCIA, COD_CANTON, COD_DISTRITO, OTRAS_SENAS) 
                         VALUES ('$codProvincia', '$codCanton', '$codDistrito', '$otrasSenas')");

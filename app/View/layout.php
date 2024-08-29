@@ -52,7 +52,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="../animales/carnetTodos.php" class="nav-link">
+                                        <a href="../animales/carnetVista.php" class="nav-link">
                                         <p class="text-white-custom">Ver todas las mascotas</p>
                                         </a>
                                     </li>
@@ -189,7 +189,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="../animales/carnetTodos.php" class="nav-link">
+                                        <a href="../animales/carnetVista.php" class="nav-link">
                                         <p class="text-white-custom">Ver todas las mascotas</p>
                                         </a>
                                     </li>
