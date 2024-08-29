@@ -46,7 +46,7 @@ head();
                                                 <?php endif; ?>
 
 
-                                                <a href="#" class="btn btn-info btn-sm">Adoptar</a>
+                                                <a href="../animales/adoptarAnimalito.php" class="btn btn-info btn-sm">Adoptar</a>
                                             </div>
                                         </div>
                                     </div>
