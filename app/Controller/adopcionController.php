@@ -1,24 +1,20 @@
 <?php
-include_once '../Model/adopcionModel.php';
+include_once __DIR__ . '/../Model/adopcionModel.php';
 
 class adopcionController
 {
     public static function agregarSolicitudAdopcion()
     {
         session_start();
-
-        // Obtiene los datos del formulario enviados por POST
         $id_usuario = $_SESSION['id_usuario'];
         $id_carnet = intval($_POST['idCarnet']);
         $nombre_usuario = $_POST['nombre_usuario'];
-        $num_telefono = $_POST['num_telefono'];  // Asegúrate que el nombre coincide con el del formulario
+        $num_telefono = $_POST['num_telefono'];
         $correo = $_POST['correo'];
         $mensaje = $_POST['mensaje'];
 
-        // Llama al modelo para registrar la solicitud en la base de datos
         $resultado = adopcionModel::registrarSolicitud($id_usuario, $id_carnet, $nombre_usuario, $num_telefono, $correo, $mensaje);
 
-        // Devuelve una respuesta basada en el resultado de la inserción
         if ($resultado) {
             echo json_encode(['success' => true, 'message' => 'Solicitud de adopción enviada exitosamente.']);
         } else {
@@ -44,12 +40,50 @@ class adopcionController
 
         return $resultado;
     }
+
+    public static function ObtenerSolicitudesAdopcion()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $id_usuario = $_SESSION['id_usuario'];
+        return adopcionModel::ObtenerSolicitudesAdopcion($id_usuario);
+    }
+
+
+    public static function ObtenerSolicitudAdopcion($id_adopcion)
+    {
+        $solicitud = adopcionModel::ObtenerSolicitudAdopcion($id_adopcion);
+        return $solicitud;
+    }
+
+    public static function RechazarSolicitud()
+    {
+        $id_adopcion = $_POST['id_adopcion'];
+
+        $resultado = adopcionModel::RechazarSolicitud($id_adopcion);
+
+        if ($resultado) {
+            echo json_encode(['success' => true, 'message' => 'Se rechazo la solicitud de adopción exitosamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al rechazo la solicitud de adopción.']);
+        }
+    }
 }
 
-// Manejador de solicitudes
+
 if (isset($_POST['action'])) {
     if ($_POST['action'] === 'EnviarMensaje') {
         adopcionController::agregarSolicitudAdopcion();
         adopcionController::actualizarEstadoCarnet();
     }
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'Todos') {
+    $solicitudes = adopcionController::ObtenerSolicitudesAdopcion();
+    echo json_encode($solicitudes);
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'EliminarSolicitud') {
+    adopcionController::RechazarSolicitud();
 }

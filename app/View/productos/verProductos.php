@@ -111,51 +111,67 @@ head();
             $('.eliminar-producto').on('click', function(e) {
                 e.preventDefault();
                 var id_producto = $(this).data('id');
-                $.ajax({
-                    url: '../../Controller/productoController.php?action=EliminarProducto',
-                    type: 'POST',
-                    data: {
-                        id_producto: id_producto
-                    },
-                    success: function(response) {
-                        try {
-                            var data = JSON.parse(response);
-                            if (data.success) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Éxito',
-                                    text: data.message,
-                                }).then(() => {
-                                    location.reload();
-                                });
-                            } else {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '../../Controller/productoController.php?action=EliminarProducto',
+                            type: 'POST',
+                            data: {
+                                id_producto: id_producto
+                            },
+                            success: function(response) {
+                                try {
+                                    var data = JSON.parse(response);
+                                    if (data.success) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Éxito',
+                                            text: data.message,
+                                        }).then(() => {
+                                            location.reload();
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: data.message,
+                                        });
+                                    }
+                                } catch (e) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error de respuesta',
+                                        text: 'La respuesta no es un JSON válido: ' + response,
+                                    });
+                                    console.error("Respuesta del servidor:", response);
+                                }
+                            },
+                            error: function() {
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error',
-                                    text: data.message,
+                                    text: 'Hubo un error en la solicitud.',
                                 });
                             }
-                        } catch (e) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error de respuesta',
-                                text: 'La respuesta no es un JSON válido: ' + response,
-                            });
-                            console.error("Respuesta del servidor:", response);
-                        }
-                    },
-                    error: function() {
+                        });
+                    } else {
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Hubo un error en la solicitud.',
+                            icon: 'info',
+                            title: 'Cancelado',
+                            text: 'El producto no fue eliminado.',
                         });
                     }
                 });
             });
         });
     </script>
-
 </body>
 
 </html>

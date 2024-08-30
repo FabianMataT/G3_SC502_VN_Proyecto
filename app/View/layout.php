@@ -106,6 +106,11 @@
                                             <p class="text-white-custom">Carnets en Procesado</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="../animales/animalesEnProceso.php" class="nav-link">
+                                            <p class="text-white-custom">Solicitudes de adopción</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="text-white-custom">
@@ -134,16 +139,31 @@
                             {
                             echo '
                             <li class="nav-item has-treeview">
-                                <a href="../admin/verUsuarios.php" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i>
                                         <img src="../dist/img/administrador.png"
                                         alt="Usuarios" width="25" height="25">
                                     </i>
                                     <p class="text-white-custom">
-                                    Ver usuarios
+                                    Admin
+                                    <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                            </li>';
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item has-treeview">
+                                        <a href="../admin/verUsuarios.php" class="nav-link">
+                                            <p class="text-white-custom">Ver usuarios</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../admin/verDonaciones.php" class="nav-link">
+                                            <p class="text-white-custom">Publicar un animal</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            ';
                             }
                         echo'
                         </ul>

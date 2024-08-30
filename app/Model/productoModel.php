@@ -66,23 +66,23 @@ class productoModel
 
 
     public static function obtenerProducto($id_producto)
-{
-    $conexion = AbrirBaseDatos();
+    {
+        $conexion = AbrirBaseDatos();
 
-    $sql = "SELECT ID_PRODUCTO, ID_USUARIO, TITULO_PUBLI, DESCRIPCION, IMAGEN FROM fide_tab_productos WHERE ID_PRODUCTO = ?";
-    $stmt = $conexion->prepare($sql);
+        $sql = "SELECT ID_PRODUCTO, ID_USUARIO, TITULO_PUBLI, DESCRIPCION, IMAGEN FROM fide_tab_productos WHERE ID_PRODUCTO = ?";
+        $stmt = $conexion->prepare($sql);
 
-    $stmt->bind_param("i", $id_producto);
-    $stmt->execute();
-    
-    $resultado = $stmt->get_result();
-    $producto = $resultado->fetch_assoc();
+        $stmt->bind_param("i", $id_producto);
+        $stmt->execute();
 
-    $stmt->close();
-    CerrarBaseDatos($conexion);
+        $resultado = $stmt->get_result();
+        $producto = $resultado->fetch_assoc();
 
-    return $producto;
-}
+        $stmt->close();
+        CerrarBaseDatos($conexion);
+
+        return $producto;
+    }
 
     public static function editarProducto($id_producto, $titulo_publi, $descripcion, $imagen)
     {

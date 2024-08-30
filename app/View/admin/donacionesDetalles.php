@@ -29,7 +29,7 @@ if (isset($_GET['id_donacion'])) {
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Información del Usuario</h3>
-                        <p><strong>Nombre de Usuario:</strong> <?php echo htmlspecialchars($usuario['NOMBRE_USUARIO']); ?></p>
+                        <p><strong>Nombre de Usuario:</strong> <?php echo htmlspecialchars($usuario['username']); ?></p>
                         <p><strong>Nombre Completo:</strong> <?php echo htmlspecialchars($usuario['nombre_completo']); ?></p>
                         <p><strong>Teléfono:</strong> <?php echo htmlspecialchars($usuario['TELEFONO']); ?></p>
                         <p><strong>Correo Electrónico:</strong> <?php echo htmlspecialchars($usuario['CORREO']); ?></p>
