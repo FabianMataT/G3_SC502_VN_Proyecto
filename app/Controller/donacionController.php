@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../Model/conexionDB.php';
+include_once  __DIR__ . '/../Model/conexionDB.php';
 
 class donacionController
 {
@@ -40,6 +41,29 @@ class donacionController
         return $resultado;
     }
 
+    public static function ObtenerDonaciones()
+    {
+        $conexion = AbrirBaseDatos();
+
+        $sql = "SELECT d.ID_DONACION, 
+                       u.NOMBRE_USUARIO AS username, 
+                       u.CORREO, 
+                       u.TELEFONO
+                FROM fide_tab_donacion d
+                INNER JOIN fide_tab_usuario u ON d.ID_USUARIO = u.ID_USUARIO";
+
+        $resultado = mysqli_query($conexion, $sql);
+
+        $donaciones = [];
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            $donaciones[] = $row;
+        }
+
+        CerrarBaseDatos($conexion);
+
+        return $donaciones;
+    }
+
     // Método para procesar la donación
     public static function ProcesarDonacion()
     {
@@ -50,22 +74,16 @@ class donacionController
                 $nombreArchivo = $_FILES['archivo']['name'];
                 $rutaTemporal = $_FILES['archivo']['tmp_name'];
 
-                // Define la carpeta de destino
                 $carpetaDestino = 'C:/xampp/htdocs/G3_SC502_VN_Proyecto/app/View/dist/uploads/';
 
-                // Asegúrate de que la carpeta exista
                 if (!file_exists($carpetaDestino)) {
                     mkdir($carpetaDestino, 0777, true);
                 }
 
-                // Define la ruta completa de destino
                 $rutaDestino = $carpetaDestino . basename($nombreArchivo);
 
-                // Mueve el archivo subido a la carpeta destino
                 if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
-                    // Guardar información en la base de datos
                     if (self::GuardarDonacion($id_usuario, $rutaDestino)) {
-                        // Redirigir a una página de éxito
                         header('Location: formularioDonacion.php?mensaje=exito');
                         exit;
                     } else {
@@ -82,5 +100,26 @@ class donacionController
             exit;
         }
     }
+
+    public static function ObtenerDonacionPorID($id_donacion)
+    {
+        $conexion = AbrirBaseDatos();
+        $id_donacion = intval($id_donacion);
+
+        $sql = "SELECT d.ID_DONACION, d.ID_USUARIO, d.LINK_COMPROBANTE, 
+                       u.NOMBRE_USUARIO AS username, 
+                       u.CORREO, 
+                       u.TELEFONO,
+                       CONCAT(u.NOMBRE, ' ', u.APELLIDO1, ' ', u.APELLIDO2) AS nombre_completo
+                FROM fide_tab_donacion d
+                JOIN fide_tab_usuario u ON d.ID_USUARIO = u.ID_USUARIO
+                WHERE d.ID_DONACION = $id_donacion";
+
+        $resultado = mysqli_query($conexion, $sql);
+        $donacion = mysqli_fetch_assoc($resultado);
+
+        CerrarBaseDatos($conexion);
+
+        return $donacion;
+    }
 }
-?>
