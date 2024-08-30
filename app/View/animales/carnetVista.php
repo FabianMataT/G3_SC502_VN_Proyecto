@@ -41,12 +41,8 @@ $carnets = carnetController::obtenerCarnets();
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(<?php echo urlencode($carnet['ID_CARNET']); ?>)">Eliminar</button>
                                                     <?php endif; ?>
 
-<<<<<<< Updated upstream
-                                                <a href="../animales/adoptarAnimalito.php" class="btn btn-info btn-sm">Adoptar</a>
-=======
                                                     <a href="#" class="btn btn-info btn-sm">Adoptar</a>
                                                 </div>
->>>>>>> Stashed changes
                                             </div>
                                         </div>
                                     <?php endif; ?>
