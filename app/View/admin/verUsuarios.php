@@ -43,9 +43,9 @@ head();
                 <h1>Lista de Usuarios</h1>
 
                 <div class="filter-buttons">
-                    <a href="verUsuarios.php?ESTADO=1" class="btn btn-primary mb-3">Activos</a>
+                    <a href="verUsuarios.php?ESTADO=1" class="btn btn-success mb-3">Activos</a>
+                    <a href="verUsuariosValidacion.php?ROL=4" class="btn btn-primary mb-3">En Validación</a>
                     <a href="verUsuarios.php?ESTADO=0" class="btn btn-danger mb-3">Inactivos</a>
-                    <a href="verUsuarios.php?ROL=4" class="btn btn-danger mb-3">En Validación</a>
                     <a href="verUsuarios.php" class="btn btn-info mb-3">Todos</a>
                 </div>
 
