@@ -10,7 +10,7 @@ class donacionController
         $id_usuario = intval($id_usuario);
 
         $sql = "SELECT u.NOMBRE_USUARIO AS username, 
-                       CONCAT(u.NOMBRE, ' ', u.APPELLIDO1, ' ', u.APPELLIDO2) AS nombre_completo, 
+                       CONCAT(u.NOMBRE, ' ', u.APELLIDO1, ' ', u.APELLIDO2) AS nombre_completo, 
                        u.TELEFONO,
                        u.CORREO
                 FROM fide_tab_usuario u

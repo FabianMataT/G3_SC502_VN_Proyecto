@@ -41,7 +41,8 @@ $carnets = carnetController::obtenerCarnets();
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(<?php echo urlencode($carnet['ID_CARNET']); ?>)">Eliminar</button>
                                                     <?php endif; ?>
 
-                                                    <a href="#" class="btn btn-info btn-sm">Adoptar</a>
+                                                    <a href="adoptarVista.php?idCarnet=<?php echo $carnet['ID_CARNET']; ?>" class="btn btn-info btn-sm">Adoptar</a>
+
                                                 </div>
                                             </div>
                                         </div>

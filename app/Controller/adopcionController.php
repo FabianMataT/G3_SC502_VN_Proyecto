@@ -1,40 +1,55 @@
 <?php
-// Incluye el modelo que maneja la interacción con la base de datos
-include_once '../../Model/adopcionModel.php';
+include_once '../Model/adopcionModel.php';
 
-class adopcionController {
+class adopcionController
+{
+    public static function agregarSolicitudAdopcion()
+    {
+        session_start();
 
-    // Función para obtener los datos del usuario por ID
-    public static function ObtenerUsuarioPorIDAdopcion($id_usuario) {
-        // Llama al modelo para obtener los datos del usuario
-        $usuario = adopcionModel::obtenerUsuarioPorID($id_usuario);
-        return $usuario;
-    }
+        // Obtiene los datos del formulario enviados por POST
+        $id_usuario = $_SESSION['id_usuario'];
+        $id_carnet = intval($_POST['idCarnet']);
+        $nombre_usuario = $_POST['nombre_usuario'];
+        $num_telefono = $_POST['num_telefono'];  // Asegúrate que el nombre coincide con el del formulario
+        $correo = $_POST['correo'];
+        $mensaje = $_POST['mensaje'];
 
-    // Función para procesar la solicitud de adopción
-    public static function ProcesarAdopcion() {
-        // Verificar si los campos requeridos están presentes
-        if (isset($_POST['nombre']) && isset($_POST['email']) && isset($_POST['telefono']) && isset($_POST['direccion']) && isset($_POST['mensaje'])) {
-            $nombre = $_POST['nombre'];
-            $email = $_POST['email'];
-            $telefono = $_POST['telefono'];
-            $direccion = $_POST['direccion'];
-            $mensaje = $_POST['mensaje'];
+        // Llama al modelo para registrar la solicitud en la base de datos
+        $resultado = adopcionModel::registrarSolicitud($id_usuario, $id_carnet, $nombre_usuario, $num_telefono, $correo, $mensaje);
 
-            // Guardar la solicitud de adopción en la base de datos
-            $resultado = adopcionModel::guardarSolicitudAdopcion($nombre, $email, $telefono, $direccion, $mensaje);
-
-            if ($resultado) {
-                // Redirigir con un mensaje de éxito
-                header('Location: adopcion.php?mensaje=exito');
-                exit;
-            } else {
-                // Manejar el error si la solicitud no pudo ser guardada
-                echo "Hubo un problema al procesar la solicitud. Por favor, inténtalo de nuevo.";
-            }
+        // Devuelve una respuesta basada en el resultado de la inserción
+        if ($resultado) {
+            echo json_encode(['success' => true, 'message' => 'Solicitud de adopción enviada exitosamente.']);
         } else {
-            echo "Todos los campos son obligatorios.";
+            echo json_encode(['success' => false, 'message' => 'Error al enviar la solicitud de adopción.']);
         }
     }
+
+    public static function actualizarEstadoCarnet()
+    {
+        $conexion = AbrirBaseDatos();
+
+        $id_carnet = intval($_POST['idCarnet']);
+
+        $sql = "UPDATE fide_tab_carnet SET ID_ESTADO = ? WHERE ID_CARNET = ?";
+        $stmt = $conexion->prepare($sql);
+        $nuevo_estado = 3;
+
+        $stmt->bind_param("ii", $nuevo_estado, $id_carnet);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
+    }
 }
-?>
+
+// Manejador de solicitudes
+if (isset($_POST['action'])) {
+    if ($_POST['action'] === 'EnviarMensaje') {
+        adopcionController::agregarSolicitudAdopcion();
+        adopcionController::actualizarEstadoCarnet();
+    }
+}

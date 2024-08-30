@@ -56,11 +56,7 @@
                                         <p class="text-white-custom">Ver todas las mascotas</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="../animales/adoptarAnimalito.php" class="nav-link">
-                                        <p class="text-white-custom">Adoptar un animalito</p>
-                                        </a>
-                                    </li>
+                                    
                                 
                                 </ul>
                             </li>
