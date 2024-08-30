@@ -157,7 +157,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="../admin/verDonaciones.php" class="nav-link">
-                                            <p class="text-white-custom">Publicar un animal</p>
+                                            <p class="text-white-custom">Ver Donaciones</p>
                                         </a>
                                     </li>
                                 </ul>
