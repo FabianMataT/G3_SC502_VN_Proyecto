@@ -36,8 +36,8 @@ head();
                             <input type="text" id="raza" name="raza" required>
                         </div>
                         <div>
-                            <label class="text-white" for="anio_rescate">Año de rescate de la mascota</label>
-                            <input type="date" id="anio_rescate" name="anio_rescate" required>
+                            <label class="text-white" for="fecha_rescate">Fecha de rescate de la mascota</label>
+                            <input type="date" id="fecha_rescate" name="fecha_rescate" required>
                         </div>
                         <div>
                             <label class="text-white" for="descripcion">Descripción</label>
@@ -49,7 +49,6 @@ head();
                         </div>
                         <button type="button" class="btn-primary rounded-3" id="saveBtn">Guardar</button>
                     </form>
-
                 </div>
 
             </section>
@@ -67,9 +66,10 @@ head();
                 e.preventDefault();
 
                 var formData = new FormData($('#publicationForm')[0]);
+                formData.append('action', 'Crear'); // Asegúrate de agregar el campo 'action'
 
                 $.ajax({
-                    url: '../../Controller/carnetController.php?action=Crear',
+                    url: '../../Controller/carnetController.php', // No es necesario pasar action en la URL si lo haces en el formData
                     type: 'POST',
                     data: formData,
                     contentType: false,

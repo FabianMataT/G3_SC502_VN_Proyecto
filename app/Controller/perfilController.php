@@ -11,8 +11,8 @@ class PerfilController
 
         $sql = "SELECT u.NOMBRE_USUARIO AS username, 
                        u.NOMBRE AS nombre, 
-                       u.APPELLIDO1 AS apellido1, 
-                       u.APPELLIDO2 AS apellido2, 
+                       u.APELLIDO1 AS apellido1, 
+                       u.APELLIDO2 AS apellido2, 
                        u.TELEFONO AS telefono,
                        u.CORREO AS correo,
                        r.NOMBRE_ROL AS rol
@@ -35,8 +35,8 @@ class PerfilController
 
         $sql = "UPDATE fide_tab_usuario SET 
         NOMBRE = '$nombre',
-        APPELLIDO1 = '$apellido1',
-        APPELLIDO2 = '$apellido2',
+        APELLIDO1 = '$apellido1',
+        APELLIDO2 = '$apellido2',
         TELEFONO = '$telefono',
         NOMBRE_USUARIO = '$nombre_usuario',
         CORREO = '$correo'

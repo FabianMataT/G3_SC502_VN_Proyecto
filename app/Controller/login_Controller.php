@@ -20,7 +20,7 @@ if (!empty($_POST["btnIniciarSesion"])) {
     $sql = $conexion->query("SELECT * FROM FIDE_TAB_USUARIO WHERE CORREO='$correo' AND CONTRASENA='$contrasena'");
 
     if ($datos = $sql->fetch_object()) {
-        if ($datos->ID_ESTADO == 2) {
+        if ($datos->ESTADO == 0) {
             CerrarBaseDatos($conexion);
             $_SESSION['error_mensaje'] = "ERROR: ESTE USUARIO FUE BLOQUEADO. CONTACTE CON UN ADMINISTRADOR PARA SU DESBLOQUEO.";
         } elseif ($datos->ID_ROL == 4) {

@@ -96,9 +96,12 @@ head();
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-sm">
+                                            <button type="submit" class="btn btn-primary btn-sm mb-2">
                                                 <i class="fas fa-save"></i> Guardar Cambios
                                             </button>
+                                            <a href="verPerfil.php" class="btn btn-info btn-sm">
+                                                <i class="fas fa-user-shield"></i> Regresar
+                                            </a>
                                         </div>
                                     </form>
                                 </div>

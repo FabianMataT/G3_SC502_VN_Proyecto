@@ -42,4 +42,58 @@ class carnetModel
         CerrarBaseDatos($conexion);
         return $carnets;
     }
+
+    public static function eliminarCarnet($idCarnet)
+    {
+        $conexion = AbrirBaseDatos();
+        $idCarnet = intval($idCarnet);
+
+        $sql = "DELETE FROM fide_tab_carnet WHERE ID_CARNET = $idCarnet";
+
+        $resultado = mysqli_query($conexion, $sql);
+
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
+    }
+
+    public static function obtenerCarnetPorId($idCarnet)
+    {
+        $conexion = AbrirBaseDatos();
+        $idCarnet = intval($idCarnet);
+
+        $sql = "SELECT * FROM fide_tab_carnet WHERE ID_CARNET = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $idCarnet);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $carnet = $resultado->fetch_assoc();
+        $stmt->close();
+        CerrarBaseDatos($conexion);
+
+        return $carnet;
+    }
+
+    public static function actualizarCarnet($idCarnet, $nombre_animal, $raza, $fecha_rescate, $descripcion, $imagen = null)
+    {
+        $conexion = AbrirBaseDatos();
+        
+        $sql = "UPDATE fide_tab_carnet SET NOMBRE_ANIMAL = ?, RAZA = ?, FECHA_RESCATE = ?, DESCRIPCION = ?" . 
+               ($imagen ? ", IMAGEN = ?" : "") . " WHERE ID_CARNET = ?";
+        
+        $stmt = $conexion->prepare($sql);
+
+        if ($imagen) {
+            $stmt->bind_param("sssssi", $nombre_animal, $raza, $fecha_rescate, $descripcion, $imagen, $idCarnet);
+        } else {
+            $stmt->bind_param("ssssi", $nombre_animal, $raza, $fecha_rescate, $descripcion, $idCarnet);
+        }
+
+        $resultado = $stmt->execute();
+        $stmt->close();
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
+    }
+
 }

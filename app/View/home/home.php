@@ -74,27 +74,27 @@ head();
                             <h1>Encontrar a tu mascota</h1>
                             <div class="row">
                                 <?php foreach ($carnets as $carnet): ?>
-                                    <div class="col-md-4">
-                                        <div class="card" style="width: 18rem;">
-                                            <?php if ($carnet['IMAGEN']): ?>
-                                                <img src="/G3_SC502_VN_Proyecto/app/View/subirImg/<?php echo basename($carnet['IMAGEN']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($carnet['NOMBRE_ANIMAL']); ?>" style="object-fit: cover; width: 100%; height: 200px;">
-                                            <?php endif; ?>
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?php echo htmlspecialchars($carnet['NOMBRE_ANIMAL']); ?></h5>
-                                                <p class="card-text">Raza: <?php echo htmlspecialchars($carnet['RAZA']); ?></p>
-                                                <p class="card-text">Fecha de Rescate: <?php echo htmlspecialchars(date('d-m-Y', strtotime($carnet['FECHA_RESCATE']))); ?></p>
-
-                                                <!-- Verificación de permisos para mostrar los botones -->
-                                                <?php if ($_SESSION['id_rol'] == 1 || $carnet['ID_USUARIO'] == $_SESSION['id_usuario']): ?>
-                                                    <a href="#" class="btn btn-primary btn-sm">Actualizar</a>
-                                                    <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                                    <?php if ($carnet['ID_ESTADO'] == 2): ?>
+                                        <div class="col-md-4">
+                                            <div class="card" style="width: 18rem;">
+                                                <?php if ($carnet['IMAGEN']): ?>
+                                                    <img src="/G3_SC502_VN_Proyecto/app/View/subirImg/<?php echo basename($carnet['IMAGEN']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($carnet['NOMBRE_ANIMAL']); ?>" style="object-fit: cover; width: 100%; height: 200px;">
                                                 <?php endif; ?>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?php echo htmlspecialchars($carnet['NOMBRE_ANIMAL']); ?></h5>
+                                                    <p class="card-text">Raza: <?php echo htmlspecialchars($carnet['RAZA']); ?></p>
+                                                    <p class="card-text">Fecha de Rescate: <?php echo htmlspecialchars(date('d-m-Y', strtotime($carnet['FECHA_RESCATE']))); ?></p>
 
+                                                    <?php if ($_SESSION['id_rol'] == 1 || $carnet['ID_USUARIO'] == $_SESSION['id_usuario']): ?>
+                                                        <a href="carnetActualizar.php?idCarnet=<?php echo $carnet['ID_CARNET']; ?>" class="btn btn-primary btn-sm">Actualizar</a>
+                                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(<?php echo urlencode($carnet['ID_CARNET']); ?>)">Eliminar</button>
+                                                    <?php endif; ?>
 
-                                                <a href="#" class="btn btn-info btn-sm">Adoptar</a>
+                                                    <a href="#" class="btn btn-info btn-sm">Adoptar</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </div>
                         </div>

@@ -9,7 +9,7 @@ class adminController
         $conexion = AbrirBaseDatos();
 
         $sql = "SELECT u.NOMBRE_USUARIO AS username, 
-                   CONCAT(u.NOMBRE, ' ', u.APPELLIDO1, ' ', u.APPELLIDO2) AS nombre_completo, 
+                   CONCAT(u.NOMBRE, ' ', u.APELLIDO1, ' ', u.APELLIDO2) AS nombre_completo, 
                    u.TELEFONO AS telefono, 
                    u.CORREO AS email, 
                    r.NOMBRE_ROL AS rol,
@@ -77,7 +77,7 @@ class adminController
         $id_usuario = intval($id_usuario);
 
         $sql = "SELECT u.NOMBRE_USUARIO AS username, 
-                       CONCAT(u.NOMBRE, ' ', u.APPELLIDO1, ' ', u.APPELLIDO2) AS nombre_completo, 
+                       CONCAT(u.NOMBRE, ' ', u.APELLIDO1, ' ', u.APELLIDO2) AS nombre_completo, 
                        u.ID_ROL
                 FROM fide_tab_usuario u
                 WHERE u.ID_USUARIO = $id_usuario";
