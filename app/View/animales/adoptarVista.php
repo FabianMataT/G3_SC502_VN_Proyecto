@@ -84,7 +84,7 @@ if (!$usuario) {
                             </div>
                             <div class="form-group">
                                 <label for="mensaje">Dirección y Mensaje:</label>
-                                <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu dirección y la razón de por qué deseas adoptarme aquí.."></textarea>
+                                <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu dirección y la razón de por qué deseas adoptarme aquí.." required="true"></textarea>
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-primary">Enviar Mensaje</button>

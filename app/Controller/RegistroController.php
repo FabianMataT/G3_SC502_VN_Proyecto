@@ -10,8 +10,8 @@ class registroController
         require 'PHPMailer/src/PHPMailer.php';
         require 'PHPMailer/src/SMTP.php';
 
-        $correoSalida = "clasesphp@outlook.com";
-        $contrasennaSalida = "phpclases2024*";
+        $correoSalida = "fmata50816@ufide.ac.cr";
+        $contrasennaSalida = "rVSB7VQ29pCGwb,";
 
         $mail = new PHPMailer();
         $mail->CharSet = 'UTF-8';
@@ -155,7 +155,7 @@ class registroController
                 echo json_encode(['success' => true, 'message' => 'Cuenta registrada correctamente, tu cuenta se encuentra en validacion. El administrador a sido notificado sobre tu solicitud, proto sera procesada.']);
                 $contenido = "<html><body>
                 Estimado(a) Administrador <br/><br/>
-                Se  a registrado una empresa que quiere tener el perfil profecional llamdaa: <b>" . $empresa . "</b><br/>
+                Se  a registrado una empresa que quiere tener el perfil profecional llamada: <b>" . $empresa . "</b><br/>
                 Por favor, revisa el modulo de usuarios para que valores la cuenta.<br/><br/>
                 Muchas gracias.
                 </body></html>";
