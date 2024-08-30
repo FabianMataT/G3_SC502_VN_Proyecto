@@ -106,8 +106,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="../animales/carnetEliminar.php" class="nav-link">
-                                            <p class="text-white-custom">Eliminar una publicación</p>
+                                        <a href="../animales/carnetProceso.php" class="nav-link">
+                                            <p class="text-white-custom">Carnets en Procesado</p>
                                         </a>
                                     </li>
                                 </ul>

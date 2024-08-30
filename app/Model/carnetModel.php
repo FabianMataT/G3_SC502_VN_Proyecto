@@ -43,6 +43,27 @@ class carnetModel
         return $carnets;
     }
 
+    public static function obtenerCarnetsPorUsuario($id_usuario)
+    {
+        $conexion = AbrirBaseDatos();
+
+        $sql = "SELECT * FROM fide_tab_carnet WHERE ID_USUARIO = ? ORDER BY FECHA_RESCATE DESC";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $carnets = array();
+
+        while ($row = $resultado->fetch_assoc()) {
+            $carnets[] = $row;
+        }
+
+        $stmt->close();
+        CerrarBaseDatos($conexion);
+
+        return $carnets;
+    }
+
     public static function eliminarCarnet($idCarnet)
     {
         $conexion = AbrirBaseDatos();
@@ -77,10 +98,10 @@ class carnetModel
     public static function actualizarCarnet($idCarnet, $nombre_animal, $raza, $fecha_rescate, $descripcion, $imagen = null)
     {
         $conexion = AbrirBaseDatos();
-        
-        $sql = "UPDATE fide_tab_carnet SET NOMBRE_ANIMAL = ?, RAZA = ?, FECHA_RESCATE = ?, DESCRIPCION = ?" . 
-               ($imagen ? ", IMAGEN = ?" : "") . " WHERE ID_CARNET = ?";
-        
+
+        $sql = "UPDATE fide_tab_carnet SET NOMBRE_ANIMAL = ?, RAZA = ?, FECHA_RESCATE = ?, DESCRIPCION = ?" .
+            ($imagen ? ", IMAGEN = ?" : "") . " WHERE ID_CARNET = ?";
+
         $stmt = $conexion->prepare($sql);
 
         if ($imagen) {
@@ -96,4 +117,18 @@ class carnetModel
         return $resultado;
     }
 
+    public static function actualizarEstadoCarnet($idCarnet, $nuevoEstado)
+    {
+        $conexion = AbrirBaseDatos();
+
+        $sql = "UPDATE fide_tab_carnet SET ID_ESTADO = ? WHERE ID_CARNET = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("ii", $nuevoEstado, $idCarnet);
+
+        $resultado = $stmt->execute();
+        $stmt->close();
+        CerrarBaseDatos($conexion);
+
+        return $resultado;
+    }
 }

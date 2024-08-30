@@ -3,7 +3,7 @@ include_once __DIR__ . '/../Model/carnetModel.php';
 
 class carnetController
 {
-    // Método para crear un carnet
+
     public static function crearCarnet()
     {
         session_start();
@@ -39,21 +39,27 @@ class carnetController
         echo json_encode(['success' => $resultado, 'message' => $resultado ? 'Carnet creado exitosamente.' : 'Error al crear el carnet.']);
     }
 
-    // Método para obtener carnets
+
     public static function obtenerCarnets()
     {
         return carnetModel::obtenerCarnets();
     }
 
-    // Método para eliminar un carnet
+
+    public static function obtenerCarnetsUsuario()
+    {
+        session_start();
+        $id_usuario = $_SESSION['id_usuario'];
+        return carnetModel::obtenerCarnetsPorUsuario($id_usuario);
+    }
+
+
     public static function eliminarCarnet($idCarnet)
     {
         $resultado = carnetModel::eliminarCarnet($idCarnet);
-
         echo json_encode(['success' => $resultado, 'message' => $resultado ? 'Carnet eliminado exitosamente.' : 'Error al eliminar el carnet.']);
     }
 
-    // Método para actualizar un carnet
     public static function actualizarCarnet()
     {
         session_start();
@@ -88,9 +94,22 @@ class carnetController
         $resultado = carnetModel::actualizarCarnet($idCarnet, $nombre_animal, $raza, $fecha_rescate, $descripcion, $imagen);
         echo json_encode(['success' => $resultado, 'message' => $resultado ? 'Carnet actualizado exitosamente.' : 'Error al actualizar el carnet.']);
     }
+
+    public static function actualizarEstadoCarnet($idCarnet, $nuevoEstado)
+    {
+        session_start();
+        $id_usuario = $_SESSION['id_usuario'];
+        $carnet = carnetModel::obtenerCarnetPorId($idCarnet);
+
+        if ($carnet && $carnet['ID_USUARIO'] == $id_usuario) {
+            $resultado = carnetModel::actualizarEstadoCarnet($idCarnet, $nuevoEstado);
+            echo json_encode(['success' => $resultado, 'message' => $resultado ? 'Estado actualizado exitosamente.' : 'Error al actualizar el estado.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No tienes permiso para actualizar este carnet.']);
+        }
+    }
 }
 
-// Manejador de solicitudes
 if (isset($_POST['action'])) {
     if ($_POST['action'] === 'Crear') {
         carnetController::crearCarnet();
@@ -99,5 +118,9 @@ if (isset($_POST['action'])) {
         carnetController::eliminarCarnet($idCarnet);
     } elseif ($_POST['action'] === 'Actualizar') {
         carnetController::actualizarCarnet();
+    } elseif ($_POST['action'] === 'ActualizarEstado' && isset($_POST['idCarnet']) && isset($_POST['nuevoEstado'])) {
+        $idCarnet = intval($_POST['idCarnet']);
+        $nuevoEstado = intval($_POST['nuevoEstado']);
+        carnetController::actualizarEstadoCarnet($idCarnet, $nuevoEstado);
     }
 }
