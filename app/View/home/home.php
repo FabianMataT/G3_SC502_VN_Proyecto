@@ -90,7 +90,7 @@ head();
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(<?php echo urlencode($carnet['ID_CARNET']); ?>)">Eliminar</button>
                                                     <?php endif; ?>
 
-                                                    <a href="adoptarVista.php?idCarnet=<?php echo $carnet['ID_CARNET']; ?>" class="btn btn-info btn-sm">Adoptar</a>
+                                                    <a href="../animales/adoptarVista.php?idCarnet=<?php echo $carnet['ID_CARNET']; ?>" class="btn btn-info btn-sm">Adoptar</a>
                                                 </div>
                                             </div>
                                         </div>
