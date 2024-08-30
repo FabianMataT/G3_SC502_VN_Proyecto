@@ -36,7 +36,7 @@
         while ($row = $sql->fetch_assoc()) {
             $distritos[] = $row;
         }
-        CerrarBaseDatos($distritos);
+        CerrarBaseDatos($conexion);
         return $distritos;
     }
      

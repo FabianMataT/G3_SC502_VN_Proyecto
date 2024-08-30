@@ -1,5 +1,17 @@
 <?php
 include_once '../layout.php';
+include_once '../../Controller/productoController.php';
+
+if (!isset($_GET['id_producto']) || empty($_GET['id_producto'])) {
+    die('ID del producto no proporcionado.');
+}
+
+$id_producto = intval($_GET['id_producto']);
+$producto = productoController::obtenerProducto($id_producto);
+
+if (!$producto) {
+    die('Producto no encontrado.');
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,26 +33,29 @@ head();
             <section class="content">
 
                 <div class="container_producto" style="
-        background-image: url('../dist/img/fondo.jpg'); 
-        background-size: cover; 
-        background-position: center; 
-        padding: 20px; 
-        border-radius: 8px;">
-                    <h1 class="text-white" style="text-align:center;">Crear Producto</h1>
+                            background-image: url('../dist/img/fondo.jpg'); 
+                            background-size: cover; 
+                            background-position: center; 
+                            padding: 20px; 
+                            border-radius: 8px;">
+                    <h1 class="text-white" style="text-align:center;">Actualizar Producto</h1>
 
                     <form id="publicationForm" class="m-5" enctype="multipart/form-data" method="post">
-                        <input type="hidden" id="publicationId">
+                        <input type="hidden" id="publicationId" name="id_producto" value="<?php echo htmlspecialchars($producto['ID_PRODUCTO']); ?>">
                         <div>
                             <label class="text-white" for="title">Título</label>
-                            <input type="text" id="titulo_publi" name="titulo_publi" required>
+                            <input type="text" id="titulo_publi" name="titulo_publi" value="<?php echo htmlspecialchars($producto['TITULO_PUBLI']); ?>" required>
                         </div>
                         <div>
                             <label class="text-white" for="description">Descripción</label>
-                            <textarea id="descripcion" name="descripcion" required></textarea>
+                            <textarea id="descripcion" name="descripcion" required><?php echo htmlspecialchars($producto['DESCRIPCION']); ?></textarea>
                         </div>
                         <div>
                             <label class="text-white" for="image">Imagen</label>
-                            <input class="text-white" type="file" id="image" name="image" required>
+                            <input class="text-white" type="file" id="image" name="image">
+                            <?php if ($producto['IMAGEN']): ?>
+                                <img src="/G3_SC502_VN_Proyecto/app/View/subirImg/<?php echo basename($producto['IMAGEN']); ?>" alt="Imagen actual" style="max-width: 100px; max-height: 100px;">
+                            <?php endif; ?>
                         </div>
                         <button type="button" class="btn-primary" id="saveBtn">Guardar</button>
                     </form>
@@ -62,7 +77,7 @@ head();
                 var formData = new FormData($('#publicationForm')[0]);
 
                 $.ajax({
-                    url: '../../Controller/productoController.php?action=Crear',
+                    url: '../../Controller/productoController.php?action=EditarProducto',
                     type: 'POST',
                     data: formData,
                     contentType: false,

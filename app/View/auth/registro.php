@@ -1,7 +1,6 @@
 <?php
 include_once '../layout.php';
 include_once '../../Controller/registro_Controller.php';
-$Dropdown_Menu_Provincias = Dropdown_Menu_Provincias();
 ?>
 
 <!DOCTYPE html>

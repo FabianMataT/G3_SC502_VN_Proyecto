@@ -1,9 +1,11 @@
 <?php
 include_once '../layout.php';
 include_once '../../Controller/registro_Controller.php';
+
 $Dropdown_Menu_Provincias = Dropdown_Menu_Provincias();
 $Dropdown_Menu_Cantones = Dropdown_Menu_Cantones(1);
-$Dropdown_Menu_Provincias = Dropdown_Menu_Provincias(1);
+$Dropdown_Menu_Distritos = Dropdown_Menu_Distritos(1);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +24,7 @@ head();
         <div class="content-wrapper">
             <div class="container d-flex justify-content-center">
                 <div class="card shadow p-4" style="max-width: 700px; width: 100%;">
-                    <form action="" method="post">
+                    <form id="registroProfecionalForm" enctype="multipart/form-data" method="post">
                         <h2 class="text-center">Registro</h2>
                         <label for="nombreCompleto" class="form-label">Tipo de cuenta:</label>
                         <div class="input-group mb-3">
@@ -113,17 +115,16 @@ head();
                             echo '<div class="alert alert-danger">' . $_POST["msj"] . '</div>';
                         }
                         ?>
-                        <button type="submit" value="registro" name="btnRegistrarse" class="btn btn-primary btn-block">Registrarse</button>
+                        <button type="submit" value="registro" name="btnRegistrarProfecional" id="btnRegistrarProfecional" class="btn btn-primary btn-block">Registrarse</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 <script>
     const tipoCuenta_profecional = document.getElementById("tipoCuenta_profecional");
@@ -146,12 +147,13 @@ head();
         $('#provincia').change(function() {
             var selectedValue = $(this).val();
             $.ajax({
-                url: 'http://localhost/G3_SC502_VN_Proyecto/app/Controller/registro_Controller.php',
+                url: '../../Controller/registro_Controller.php',
                 type: 'POST',
                 data: {
                     action: 'cargarCanton',
                     codigoProvincia: selectedValue
                 },
+                
                 success: function(response) {
                     $('#canton').html(response);
                 },
@@ -159,6 +161,7 @@ head();
                     console.error('Error en la solicitud:', textStatus, errorThrown);
                     alert(errorThrown);
                 }
+                
             });
         });
     });
@@ -171,7 +174,7 @@ head();
         $('#canton').change(function() {
             var selectedValue = $(this).val();
             $.ajax({
-                url: 'http://localhost/G3_SC502_VN_Proyecto/app/Controller/registro_Controller.php',
+                url: '../../Controller/registro_Controller.php',
                 type: 'POST',
                 data: {
                     action: 'cargarDistrito',
@@ -188,5 +191,39 @@ head();
         });
     });
 </script>
+
+<script>
+       $(document).ready(function () {
+    $('#btnRegistrarProfecional').on('click', function(e) {
+        e.preventDefault(); 
+        var formData = new FormData($('#registroProfecionalForm')[0]);
+        
+        $.ajax({
+            url: '../../Controller/registro_Controller.php?action=registrar_profecional', 
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                console.log(response); // Log de la respuesta
+                if(response.success) {
+                    alert('Cuenta registrada exitosamente.');
+                    window.location.href = "../login.php"; 
+                } 
+            },
+            error: function(xhr, status, error) {
+                console.log("Error en la solicitud:", status, error); // Log del error
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Hubo un problema al comunicarse con el servidor.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+});
+
+    </script>
 
 </html>
