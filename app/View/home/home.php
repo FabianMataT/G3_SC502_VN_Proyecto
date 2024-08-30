@@ -86,7 +86,7 @@ head();
                                                     <p class="card-text">Fecha de Rescate: <?php echo htmlspecialchars(date('d-m-Y', strtotime($carnet['FECHA_RESCATE']))); ?></p>
 
                                                     <?php if ($_SESSION['id_rol'] == 1 || $carnet['ID_USUARIO'] == $_SESSION['id_usuario']): ?>
-                                                        <a href="carnetActualizar.php?idCarnet=<?php echo $carnet['ID_CARNET']; ?>" class="btn btn-primary btn-sm">Actualizar</a>
+                                                        <a href="../animales/carnetActualizar.php?idCarnet=<?php echo $carnet['ID_CARNET']; ?>" class="btn btn-primary btn-sm">Actualizar</a>
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(<?php echo urlencode($carnet['ID_CARNET']); ?>)">Eliminar</button>
                                                     <?php endif; ?>
 
@@ -111,11 +111,13 @@ head();
         $(document).ready(function() {
             $('.eliminar-producto').on('click', function(e) {
                 e.preventDefault();
-                var id_producto = $(this).data('id'); 
+                var id_producto = $(this).data('id');
                 $.ajax({
                     url: '../../Controller/productoController.php?action=EliminarProducto',
                     type: 'POST',
-                    data: { id_producto: id_producto }, 
+                    data: {
+                        id_producto: id_producto
+                    },
                     success: function(response) {
                         try {
                             var data = JSON.parse(response);
@@ -125,7 +127,7 @@ head();
                                     title: 'Éxito',
                                     text: data.message,
                                 }).then(() => {
-                                    location.reload(); 
+                                    location.reload();
                                 });
                             } else {
                                 Swal.fire({
@@ -154,7 +156,46 @@ head();
             });
         });
     </script>
-
+    <script>
+        function confirmarEliminacion(idCarnet) {
+            Swal.fire({
+                title: '¿Estás seguro de que deseas eliminar este carnet?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '../../Controller/CarnetController.php',
+                        type: 'POST',
+                        data: {
+                            action: 'Eliminar',
+                            idCarnet: idCarnet
+                        },
+                        success: function(response) {
+                            var result = JSON.parse(response);
+                            if (result.success) {
+                                Swal.fire({
+                                    title: 'Éxito',
+                                    text: result.message,
+                                    icon: 'success'
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: result.message,
+                                    icon: 'error'
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
