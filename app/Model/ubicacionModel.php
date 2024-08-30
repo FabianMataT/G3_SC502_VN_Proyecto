@@ -1,43 +1,45 @@
 <?php 
     include_once "conexionDB.php";
 
-    function getProvincias() {
-        $conexion = AbrirBaseDatos();
-        $sql = $conexion->query("SELECT * FROM fide_tab_provincia");
+    class ubicacionModel
+    {
+        public static function getProvincias() {
+            $conexion = AbrirBaseDatos();
+            $sql = $conexion->query("SELECT * FROM fide_tab_provincia");
 
-        $provincias = array();
+            $provincias = array();
 
-        while ($row = $sql->fetch_assoc()) {
-            $provincias[] = $row;
+            while ($row = $sql->fetch_assoc()) {
+                $provincias[] = $row;
+            }
+            CerrarBaseDatos($conexion);
+            return $provincias;
         }
-        CerrarBaseDatos($conexion);
-        return $provincias;
-    }
 
-    function getCantones($COD_PROVINCIA) {
-        $conexion = AbrirBaseDatos();
-        $sql = $conexion->query("SELECT * FROM fide_tab_canton WHERE COD_PROVINCIA='$COD_PROVINCIA'");
+        public static function getCantones($COD_PROVINCIA) {
+            $conexion = AbrirBaseDatos();
+            $sql = $conexion->query("SELECT * FROM fide_tab_canton WHERE COD_PROVINCIA='$COD_PROVINCIA'");
 
-        $cantones = array();
+            $cantones = array();
 
-        while ($row = $sql->fetch_assoc()) {
-            $cantones[] = $row;
+            while ($row = $sql->fetch_assoc()) {
+                $cantones[] = $row;
+            }
+            CerrarBaseDatos($conexion);
+            return $cantones;
         }
-        CerrarBaseDatos($conexion);
-        return $cantones;
-    }
 
-    function getDistritos($COD_CANTON) {
-        $conexion = AbrirBaseDatos();
-        $sql = $conexion->query("SELECT * FROM fide_tab_distrito WHERE COD_CANTON='$COD_CANTON'");
+        public static function getDistritos($COD_CANTON) {
+            $conexion = AbrirBaseDatos();
+            $sql = $conexion->query("SELECT * FROM fide_tab_distrito WHERE COD_CANTON='$COD_CANTON'");
 
-        $distritos = array();
+            $distritos = array();
 
-        while ($row = $sql->fetch_assoc()) {
-            $distritos[] = $row;
+            while ($row = $sql->fetch_assoc()) {
+                $distritos[] = $row;
+            }
+            CerrarBaseDatos($conexion);
+            return $distritos;
         }
-        CerrarBaseDatos($conexion);
-        return $distritos;
     }
-     
 ?>

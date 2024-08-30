@@ -1,10 +1,10 @@
 <?php
 include_once '../layout.php';
-include_once '../../Controller/registro_Controller.php';
+include_once '../../Controller/RegistroController.php';
 
-$Dropdown_Menu_Provincias = Dropdown_Menu_Provincias();
-$Dropdown_Menu_Cantones = Dropdown_Menu_Cantones(1);
-$Dropdown_Menu_Distritos = Dropdown_Menu_Distritos(1);
+$Dropdown_Menu_Provincias = registroController::Dropdown_Menu_Provincias();
+$Dropdown_Menu_Cantones = registroController::Dropdown_Menu_Cantones(1);
+$Dropdown_Menu_Distritos = registroController::Dropdown_Menu_Distritos(1);
 
 ?>
 
@@ -24,7 +24,7 @@ head();
         <div class="content-wrapper">
             <div class="container d-flex justify-content-center">
                 <div class="card shadow p-4" style="max-width: 700px; width: 100%;">
-                    <form id="registroProfecionalForm" enctype="multipart/form-data" method="post">
+                    <form id="publicationUsuario" enctype="multipart/form-data" method="post">
                         <h2 class="text-center">Registro</h2>
                         <label for="nombreCompleto" class="form-label">Tipo de cuenta:</label>
                         <div class="input-group mb-3">
@@ -106,124 +106,136 @@ head();
                                 </div>
                             </div>
                         </div>
-                        <label for="imagen" class="form-label">Adjunta la imagen del comprobante (Sinpe por 40mil colones al 8743-8443)</label>
+                        <label for="image" class="form-label">Adjunta la imagen del comprobante (Sinpe por 40mil colones al 8743-8443)</label>
                         <div class="input-group mb-3">
                             <input type="file" id="image" name="image" class="form-control-file">
                         </div>
-                        <?php
-                        if (isset($_POST["msj"])) {
-                            echo '<div class="alert alert-danger">' . $_POST["msj"] . '</div>';
-                        }
-                        ?>
-                        <button type="submit" value="registro" name="btnRegistrarProfecional" id="btnRegistrarProfecional" class="btn btn-primary btn-block">Registrarse</button>
+                        <button type="button" id="saveBtn" class="btn btn-primary btn-block">Registrarse</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
-<script>
-    const tipoCuenta_profecional = document.getElementById("tipoCuenta_profecional");
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    if (tipoCuenta_profecional) {
-        tipoCuenta_profecional.addEventListener("change", function() {
-            if (this.value === "usuario") {
-                window.location.href = "http://localhost/G3_SC502_VN_Proyecto/app/View/auth/registro.php";
-            } else {
-                window.location.href = "http://localhost/G3_SC502_VN_Proyecto/app/View/auth/registro_profecional.php";
-            }
-        });
-    }
-</script>
+    <script>
+        const tipoCuenta_profecional = document.getElementById("tipoCuenta_profecional");
 
-<!-- Cantón según provincia -->
-
-<script>
-    $(document).ready(function() {
-        $('#provincia').change(function() {
-            var selectedValue = $(this).val();
-            $.ajax({
-                url: '../../Controller/registro_Controller.php',
-                type: 'POST',
-                data: {
-                    action: 'cargarCanton',
-                    codigoProvincia: selectedValue
-                },
-                
-                success: function(response) {
-                    $('#canton').html(response);
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error('Error en la solicitud:', textStatus, errorThrown);
-                    alert(errorThrown);
-                }
-                
-            });
-        });
-    });
-</script>
-
-<!-- Distrito segun cantón -->
-
-<script>
-    $(document).ready(function() {
-        $('#canton').change(function() {
-            var selectedValue = $(this).val();
-            $.ajax({
-                url: '../../Controller/registro_Controller.php',
-                type: 'POST',
-                data: {
-                    action: 'cargarDistrito',
-                    codigoCanton: selectedValue
-                },
-                success: function(response) {
-                    $('#distrito').html(response);
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error('Error en la solicitud:', textStatus, errorThrown);
-                    alert(errorThrown);
+        if (tipoCuenta_profecional) {
+            tipoCuenta_profecional.addEventListener("change", function() {
+                if (this.value === "usuario") {
+                    window.location.href = "http://localhost/G3_SC502_VN_Proyecto/app/View/auth/registro.php";
+                } else {
+                    window.location.href = "http://localhost/G3_SC502_VN_Proyecto/app/View/auth/registro_profecional.php";
                 }
             });
-        });
-    });
-</script>
-
-<script>
-       $(document).ready(function () {
-    $('#btnRegistrarProfecional').on('click', function(e) {
-        e.preventDefault(); 
-        var formData = new FormData($('#registroProfecionalForm')[0]);
-        
-        $.ajax({
-            url: '../../Controller/registro_Controller.php?action=registrar_profecional', 
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                console.log(response); // Log de la respuesta
-                if(response.success) {
-                    alert('Cuenta registrada exitosamente.');
-                    window.location.href = "../login.php"; 
-                } 
-            },
-            error: function(xhr, status, error) {
-                console.log("Error en la solicitud:", status, error); // Log del error
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Hubo un problema al comunicarse con el servidor.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
-        });
-    });
-});
-
+        }
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#provincia').change(function() {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: '../../Controller/RegistroController.php',
+                    type: 'POST',
+                    data: {
+                        action: 'cargarCanton',
+                        codigoProvincia: selectedValue
+                    },
+
+                    success: function(response) {
+                        $('#canton').html(response);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error en la solicitud:', textStatus, errorThrown);
+                        alert(errorThrown);
+                    }
+
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#canton').change(function() {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: '../../Controller/RegistroController.php',
+                    type: 'POST',
+                    data: {
+                        action: 'cargarDistrito',
+                        codigoCanton: selectedValue
+                    },
+                    success: function(response) {
+                        $('#distrito').html(response);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error en la solicitud:', textStatus, errorThrown);
+                        alert(errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#saveBtn').on('click', function(e) {
+                e.preventDefault();
+
+                var formData = new FormData($('#publicationUsuario')[0]);
+
+                $.ajax({
+                    url: '../../Controller/RegistroController.php?action=RegistrarUsuarioProfecional',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        try {
+                            var data = JSON.parse(response);
+                            if (data.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Éxito',
+                                    text: data.message,
+                                }).then(() => {
+                                    window.location.href = 'login.php';
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: data.message,
+                                });
+                            }
+                        } catch (e) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error de respuesta',
+                                text: 'La respuesta no es un JSON válido: ' + response,
+                            });
+                            console.error("Respuesta del servidor:", response);
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Hubo un error en la solicitud.',
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
 
 </html>

@@ -1,6 +1,5 @@
 <?php
 include_once '../layout.php';
-include_once '../../Controller/registro_Controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +21,7 @@ head();
                     <img class="imagen" src="https://us.123rf.com/450wm/photodeti/photodeti1807/photodeti180700124/104281525-pembroke-welsh-corgi-cachorro-y-gatito-atigrado-se-miran-en-un-c%C3%A9sped-de-verano.jpg?ver=6" alt="alt" width="700px" height="650px" />
                 </div>
                 <div class="container-registro">
-                    <form action="" method="post">
+                    <form id="publicationUsuario" enctype="multipart/form-data" method="post">
                         <h2 style="text-align:center;">Registro</h2>
                         <label for="nombreCompleto" class="form-label">Tipo de cuenta:</label>
                         <div class="input-group mb-3">
@@ -73,12 +72,7 @@ head();
                                 </div>
                             </div>
                         </div>
-                        <?php
-                        if (isset($_POST["msj"])) {
-                            echo '<div class="alert alert-danger">' . $_POST["msj"] . '</div>';
-                        }
-                        ?>
-                        <button type="submit" value="registro" name="btnRegistrarse" class="btn btn-primary">Registrarse</button>
+                        <button type="button" id="saveBtn" class="btn btn-primary">Registrarse</button>
                     </form>
                 </div>
             </section>
@@ -89,6 +83,59 @@ head();
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#saveBtn').on('click', function(e) {
+                e.preventDefault();
+
+                var formData = new FormData($('#publicationUsuario')[0]);
+
+                $.ajax({
+                    url: '../../Controller/RegistroController.php?action=RegistrarUsuarioNormal',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        try {
+                            var data = JSON.parse(response);
+                            if (data.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Éxito',
+                                    text: data.message,
+                                }).then(() => {
+                                    window.location.href = 'login.php'; 
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: data.message,
+                                });
+                            }
+                        } catch (e) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error de respuesta',
+                                text: 'La respuesta no es un JSON válido: ' + response,
+                            });
+                            console.error("Respuesta del servidor:", response);
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Hubo un error en la solicitud.',
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

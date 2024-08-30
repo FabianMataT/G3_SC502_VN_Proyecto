@@ -86,11 +86,6 @@
                                             <p class="text-white-custom">Publicar un producto</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <p class="text-white-custom">Eliminar un producto</p>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item has-treeview">
